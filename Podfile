@@ -8,6 +8,7 @@ target 'ZKWeibo' do
   # Pods for ZKWeibo
   pod 'CocoaLumberjack'
   pod 'SDWebImage', '~>3.8'
+  pod 'Masonry'
   target 'ZKWeiboTests' do
     inherit! :search_paths
     # Pods for testing

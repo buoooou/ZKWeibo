@@ -7,15 +7,11 @@
 //
 
 #import "AppDelegate.h"
-#import "Constants.h"
-#import "ZKUtilities.h"
 #import "ZKIntroduceViewController.h"
 #import "ZKTabBarController.h"
-#import "ZKMacros.h"
 #import <CocoaLumberjack/CocoaLumberjack.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 
-DDLogLevel ddLogLevel;
 @interface AppDelegate ()
 
 @end
@@ -67,7 +63,6 @@ DDLogLevel ddLogLevel;
 }
 
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application {
-    ddLogLevel = DDLogLevelDebug;
     DDLogDebug(@"%@", NSStringFromSelector(_cmd));
     [[SDImageCache sharedImageCache] clearMemory];
 }
