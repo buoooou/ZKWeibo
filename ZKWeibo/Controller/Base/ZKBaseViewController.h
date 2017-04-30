@@ -12,8 +12,6 @@
 
 @property (nonatomic, assign) BOOL hideNavigationBar;
 
-- (CGFloat)navigationBarHeight; // including status bar height
-
 #pragma mark - UI
 
 // 左侧搜索按钮
