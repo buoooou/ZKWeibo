@@ -8,6 +8,8 @@
 
 #import "ZKBaseViewController.h"
 #import "ZKSearchViewController.h"
+#import "ZKUserHomeViewController.h"
+
 @interface ZKBaseViewController ()<UIGestureRecognizerDelegate>
 
 @end

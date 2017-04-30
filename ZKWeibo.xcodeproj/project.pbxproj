@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		05CD5623247237B4FAE4784D /* libPods-ZKWeiboTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9490168A1F62024DE98059A4 /* libPods-ZKWeiboTests.a */; };
+		7E3F14261EB6409700DABE64 /* ZKSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E3F14251EB6409700DABE64 /* ZKSearchViewController.m */; };
+		7E3F142A1EB640E000DABE64 /* ZKUserHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E3F14291EB640E000DABE64 /* ZKUserHomeViewController.m */; };
 		7E4F66661EB60D40003F0B4A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4F66651EB60D40003F0B4A /* main.m */; };
 		7E4F66691EB60D40003F0B4A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4F66681EB60D40003F0B4A /* AppDelegate.m */; };
 		7E4F66741EB60D40003F0B4A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E4F66731EB60D40003F0B4A /* Assets.xcassets */; };
@@ -47,6 +49,10 @@
 		7B590432B1A7D8ED95BDCBED /* Pods-ZKWeibo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZKWeibo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZKWeibo/Pods-ZKWeibo.debug.xcconfig"; sourceTree = "<group>"; };
 		7E3F14211EB6331C00DABE64 /* ZKWeibo.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZKWeibo.pch; sourceTree = "<group>"; };
 		7E3F14221EB6334800DABE64 /* ZKMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKMacros.h; path = Common/Headers/ZKMacros.h; sourceTree = "<group>"; };
+		7E3F14241EB6409700DABE64 /* ZKSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKSearchViewController.h; path = Controller/Search/ZKSearchViewController.h; sourceTree = "<group>"; };
+		7E3F14251EB6409700DABE64 /* ZKSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKSearchViewController.m; path = Controller/Search/ZKSearchViewController.m; sourceTree = "<group>"; };
+		7E3F14281EB640E000DABE64 /* ZKUserHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKUserHomeViewController.h; path = Controller/User/ZKUserHomeViewController.h; sourceTree = "<group>"; };
+		7E3F14291EB640E000DABE64 /* ZKUserHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKUserHomeViewController.m; path = Controller/User/ZKUserHomeViewController.m; sourceTree = "<group>"; };
 		7E4F66611EB60D40003F0B4A /* ZKWeibo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZKWeibo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E4F66651EB60D40003F0B4A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7E4F66671EB60D40003F0B4A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -136,8 +142,19 @@
 		7E3F14231EB6400700DABE64 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				7E3F14241EB6409700DABE64 /* ZKSearchViewController.h */,
+				7E3F14251EB6409700DABE64 /* ZKSearchViewController.m */,
 			);
 			name = Search;
+			sourceTree = "<group>";
+		};
+		7E3F14271EB640C900DABE64 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				7E3F14281EB640E000DABE64 /* ZKUserHomeViewController.h */,
+				7E3F14291EB640E000DABE64 /* ZKUserHomeViewController.m */,
+			);
+			name = User;
 			sourceTree = "<group>";
 		};
 		7E4F66581EB60D3F003F0B4A = {
@@ -234,6 +251,7 @@
 		7E4F66A11EB615C4003F0B4A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				7E3F14271EB640C900DABE64 /* User */,
 				7E3F14231EB6400700DABE64 /* Search */,
 				7E3F14201EB630FD00DABE64 /* Home */,
 				7E4F66AA1EB616B8003F0B4A /* Root */,
@@ -553,11 +571,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E4F66B01EB61710003F0B4A /* ZKIntroduceViewController.m in Sources */,
+				7E3F142A1EB640E000DABE64 /* ZKUserHomeViewController.m in Sources */,
 				7E4F66691EB60D40003F0B4A /* AppDelegate.m in Sources */,
 				7E4F66A01EB6121A003F0B4A /* ZKUtilities.m in Sources */,
 				7E4F66AD1EB616EF003F0B4A /* ZKTabBarController.m in Sources */,
 				7E4F66661EB60D40003F0B4A /* main.m in Sources */,
 				7E4F66A81EB6162E003F0B4A /* ZKBaseViewController.m in Sources */,
+				7E3F14261EB6409700DABE64 /* ZKSearchViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
