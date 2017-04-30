@@ -16,9 +16,26 @@
 @property (nonatomic,strong) UIButton *button;
 @end
 @implementation ZKIntroduceViewController
+
+#pragma view lifecycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self initDatas];
+    [self setupViews];
+}
+
+#pragma  lifecycle
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Private Method
+-(void) initDatas{
+
+}
+-(void) setupViews{
     self.button=[[UIButton alloc]init];
     self.button.frame=CGRectMake(50, 50, 300, 50);
     [self.button setTitle:@"打开首页" forState:UIControlStateNormal];
@@ -28,10 +45,6 @@
     [self.view addSubview:self.button];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 -(void)logInButtonPressed{
     
     [self entry];

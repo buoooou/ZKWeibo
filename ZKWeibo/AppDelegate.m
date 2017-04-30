@@ -12,8 +12,10 @@
 #import "ZKIntroduceViewController.h"
 #import "ZKTabBarController.h"
 #import "ZKMacros.h"
+#import <CocoaLumberjack/CocoaLumberjack.h>
+#import <SDWebImage/UIImageView+WebCache.h>
 
-
+DDLogLevel ddLogLevel;
 @interface AppDelegate ()
 
 @end
@@ -26,7 +28,17 @@
     _window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     [_window makeKeyAndVisible];
     _window.backgroundColor = [UIColor whiteColor];
-
+    
+    
+    [DDLog addLogger:[DDTTYLogger sharedInstance]]; // TTY = Xcode console
+//    [DDLog addLogger:[DDASLLogger sharedInstance]]; // ASL = Apple System Logs
+//    
+//    DDFileLogger *fileLogger = [[DDFileLogger alloc] init]; // File Logger
+//    fileLogger.rollingFrequency = 60 * 60 * 24; // 24 hour rolling
+//    fileLogger.logFileManager.maximumNumberOfLogFiles = 7;
+//    [DDLog addLogger:fileLogger];
+    
+    
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : ZKNavigationBarTitleTextColor}];
     [[UINavigationBar appearance] setTintColor:ZKLightGrayTextColor];
     [[UINavigationBar appearance] setBarTintColor:[UIColor whiteColor]];
@@ -54,6 +66,11 @@
     // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
 }
 
+- (void)applicationDidReceiveMemoryWarning:(UIApplication *)application {
+    ddLogLevel = DDLogLevelDebug;
+    DDLogDebug(@"%@", NSStringFromSelector(_cmd));
+    [[SDImageCache sharedImageCache] clearMemory];
+}
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
