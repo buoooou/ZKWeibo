@@ -10,6 +10,10 @@
 		05CD5623247237B4FAE4784D /* libPods-ZKWeiboTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9490168A1F62024DE98059A4 /* libPods-ZKWeiboTests.a */; };
 		7E3F14261EB6409700DABE64 /* ZKSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E3F14251EB6409700DABE64 /* ZKSearchViewController.m */; };
 		7E3F142A1EB640E000DABE64 /* ZKUserHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E3F14291EB640E000DABE64 /* ZKUserHomeViewController.m */; };
+		7E3F14351EB6435700DABE64 /* icon_search.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E3F14331EB6435700DABE64 /* icon_search.png */; };
+		7E3F14361EB6435700DABE64 /* icon_search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E3F14341EB6435700DABE64 /* icon_search@2x.png */; };
+		7E3F143A1EB643B400DABE64 /* nav_me_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E3F14381EB643B400DABE64 /* nav_me_normal.png */; };
+		7E3F143B1EB643B400DABE64 /* nav_me_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E3F14391EB643B400DABE64 /* nav_me_normal@2x.png */; };
 		7E4F66661EB60D40003F0B4A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4F66651EB60D40003F0B4A /* main.m */; };
 		7E4F66691EB60D40003F0B4A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4F66681EB60D40003F0B4A /* AppDelegate.m */; };
 		7E4F66741EB60D40003F0B4A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E4F66731EB60D40003F0B4A /* Assets.xcassets */; };
@@ -53,6 +57,10 @@
 		7E3F14251EB6409700DABE64 /* ZKSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKSearchViewController.m; path = Controller/Search/ZKSearchViewController.m; sourceTree = "<group>"; };
 		7E3F14281EB640E000DABE64 /* ZKUserHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKUserHomeViewController.h; path = Controller/User/ZKUserHomeViewController.h; sourceTree = "<group>"; };
 		7E3F14291EB640E000DABE64 /* ZKUserHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKUserHomeViewController.m; path = Controller/User/ZKUserHomeViewController.m; sourceTree = "<group>"; };
+		7E3F14331EB6435700DABE64 /* icon_search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_search.png; sourceTree = "<group>"; };
+		7E3F14341EB6435700DABE64 /* icon_search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_search@2x.png"; sourceTree = "<group>"; };
+		7E3F14381EB643B400DABE64 /* nav_me_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nav_me_normal.png; sourceTree = "<group>"; };
+		7E3F14391EB643B400DABE64 /* nav_me_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav_me_normal@2x.png"; sourceTree = "<group>"; };
 		7E4F66611EB60D40003F0B4A /* ZKWeibo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZKWeibo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E4F66651EB60D40003F0B4A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7E4F66671EB60D40003F0B4A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -157,6 +165,42 @@
 			name = User;
 			sourceTree = "<group>";
 		};
+		7E3F142B1EB6425D00DABE64 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				7E3F14311EB6435700DABE64 /* Image */,
+			);
+			name = Resource;
+			sourceTree = "<group>";
+		};
+		7E3F14311EB6435700DABE64 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				7E3F14371EB643B400DABE64 /* User */,
+				7E3F14321EB6435700DABE64 /* Search */,
+			);
+			name = Image;
+			path = Resource/Image;
+			sourceTree = "<group>";
+		};
+		7E3F14321EB6435700DABE64 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				7E3F14331EB6435700DABE64 /* icon_search.png */,
+				7E3F14341EB6435700DABE64 /* icon_search@2x.png */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		7E3F14371EB643B400DABE64 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				7E3F14381EB643B400DABE64 /* nav_me_normal.png */,
+				7E3F14391EB643B400DABE64 /* nav_me_normal@2x.png */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
 		7E4F66581EB60D3F003F0B4A = {
 			isa = PBXGroup;
 			children = (
@@ -188,6 +232,7 @@
 				7E4F66681EB60D40003F0B4A /* AppDelegate.m */,
 				7E4F66731EB60D40003F0B4A /* Assets.xcassets */,
 				7E4F66751EB60D40003F0B4A /* LaunchScreen.storyboard */,
+				7E3F142B1EB6425D00DABE64 /* Resource */,
 				7E4F66641EB60D40003F0B4A /* Supporting Files */,
 			);
 			path = ZKWeibo;
@@ -406,8 +451,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E3F14351EB6435700DABE64 /* icon_search.png in Resources */,
+				7E3F143B1EB643B400DABE64 /* nav_me_normal@2x.png in Resources */,
+				7E3F14361EB6435700DABE64 /* icon_search@2x.png in Resources */,
 				7E4F66771EB60D40003F0B4A /* LaunchScreen.storyboard in Resources */,
 				7E4F66741EB60D40003F0B4A /* Assets.xcassets in Resources */,
+				7E3F143A1EB643B400DABE64 /* nav_me_normal.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
