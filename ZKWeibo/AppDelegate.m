@@ -7,6 +7,12 @@
 //
 
 #import "AppDelegate.h"
+#import "Constants.h"
+#import "ZKUtilities.h"
+#import "ZKIntroduceViewController.h"
+#import "ZKTabBarController.h"
+#import "ZKMacros.h"
+
 
 @interface AppDelegate ()
 
@@ -21,9 +27,27 @@
     [_window makeKeyAndVisible];
     _window.backgroundColor = [UIColor whiteColor];
 
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : ZKNavigationBarTitleTextColor}];
+    [[UINavigationBar appearance] setTintColor:ZKLightGrayTextColor];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor whiteColor]];
+    
+    NSString *version = [ZKUtilities appCurrentVersion];
+    NSString *build = [ZKUtilities appCurrentBuild];
+    NSString *versionAndBuild = [NSString stringWithFormat:@"%@_%@", version, build];
+    
+    if (![[UserDefaults objectForKey:ZKLastShowIntroduceVersionAndBuild] isEqualToString:versionAndBuild]) {
+        _window.rootViewController = [[ZKIntroduceViewController alloc] init];
+    } else {
+        [self showMainTabBarControllers];
+    }
+    
     return YES;
 }
 
+
+- (void)showMainTabBarControllers {
+    _window.rootViewController = [[ZKTabBarController alloc] init];
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
