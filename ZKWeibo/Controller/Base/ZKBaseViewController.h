@@ -10,4 +10,16 @@
 
 @interface ZKBaseViewController : UIViewController
 
+@property (nonatomic, assign) BOOL hideNavigationBar;
+
+- (CGFloat)navigationBarHeight; // including status bar height
+
+#pragma mark - UI
+
+// 左侧搜索按钮
+- (void)addNavigationBarLeftSearchItem;
+
+// 右侧"我"按钮
+- (void)addNavigationBarRightMeItem;
+
 @end

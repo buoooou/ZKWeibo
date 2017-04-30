@@ -8,7 +8,7 @@
 
 #import "ZKBaseViewController.h"
 
-@interface ZKBaseViewController ()
+@interface ZKBaseViewController ()<UIGestureRecognizerDelegate>
 
 @end
 
@@ -21,6 +21,11 @@
     
 }
 
+
+#pragma mark - Lifecycle
+-(void)dealloc{
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
