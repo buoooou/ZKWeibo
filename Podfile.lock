@@ -7,18 +7,21 @@ PODS:
     - CocoaLumberjack/Core
   - CocoaLumberjack/Extensions (3.0.0):
     - CocoaLumberjack/Default
+  - Masonry (1.0.2)
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
 
 DEPENDENCIES:
   - CocoaLumberjack
+  - Masonry
   - SDWebImage (~> 3.8)
 
 SPEC CHECKSUMS:
   CocoaLumberjack: c823149bccc5519a9447aeb433be7b1212a7d6a5
+  Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
 
-PODFILE CHECKSUM: 245d850af2b2f31abe87f564a8d6f9810a2035e5
+PODFILE CHECKSUM: 1fa7bc71a225d22d1d371bd38ad92231d5846d6e
 
 COCOAPODS: 1.2.0.beta.1

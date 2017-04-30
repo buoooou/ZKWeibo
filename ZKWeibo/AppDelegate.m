@@ -9,8 +9,6 @@
 #import "AppDelegate.h"
 #import "ZKIntroduceViewController.h"
 #import "ZKTabBarController.h"
-#import <CocoaLumberjack/CocoaLumberjack.h>
-#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface AppDelegate ()
 
