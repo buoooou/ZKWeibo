@@ -74,6 +74,7 @@
 		7E3F14341EB6435700DABE64 /* icon_search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_search@2x.png"; sourceTree = "<group>"; };
 		7E3F14381EB643B400DABE64 /* nav_me_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nav_me_normal.png; sourceTree = "<group>"; };
 		7E3F14391EB643B400DABE64 /* nav_me_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav_me_normal@2x.png"; sourceTree = "<group>"; };
+		7E4E286D1EB76B3700FDC8E0 /* ZKWeiboApiConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKWeiboApiConstants.h; path = Common/Network/ZKWeiboApiConstants.h; sourceTree = "<group>"; };
 		7E4F66611EB60D40003F0B4A /* ZKWeibo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZKWeibo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E4F66651EB60D40003F0B4A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7E4F66671EB60D40003F0B4A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -461,6 +462,7 @@
 		7E6A0F941EB7179D00CA709E /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				7E4E286D1EB76B3700FDC8E0 /* ZKWeiboApiConstants.h */,
 				7E6A0F951EB717F200CA709E /* ZKHTTPRequester.h */,
 				7E6A0F961EB717F200CA709E /* ZKHTTPRequester.m */,
 			);

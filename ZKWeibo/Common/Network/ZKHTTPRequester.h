@@ -8,6 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ZKHTTPRequester : NSObject
+// 成功，失败 block
+typedef void(^SuccessBlock)(id responseObject);
+typedef void(^FailBlock)(NSError *error);
 
+@interface ZKHTTPRequester : NSObject
+#pragma mark - Home Page
+
+// 首页图文列表
++ (void)requestHomeMoreWithSuccess:(SuccessBlock)successBlock fail:(FailBlock)failBlock ;
 @end

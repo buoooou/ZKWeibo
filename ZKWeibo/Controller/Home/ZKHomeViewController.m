@@ -16,11 +16,12 @@
     AAPullToRefresh *pullToRefreshRight;
 }
 @property (strong, nonatomic) GMCPagingScrollView *pagingScrollView;
-//@property (strong, nonatomic) UIButton *diaryButton;
-//@property (strong, nonatomic) UIButton *likeButton;
+@property (strong, nonatomic) UIButton *diaryButton;
+@property (strong, nonatomic) UIButton *likeButton;
 @property (strong, nonatomic) UILabel *likeNumLabel;
+//@property (strong, nonatomic) UIButton *moreButton,
 
-@property (strong, nonatomic) NSMutableArray *dataSource;
+@property (strong, nonatomic) NSArray *dataSource;
 @end
 
 @implementation ZKHomeViewController
@@ -29,6 +30,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.edgesForExtendedLayout = UIRectEdgeAll;
     self.title=ZKHomeTitle;
     [self addNavigationBarRightMeItem];
     [self addNavigationBarLeftSearchItem];
@@ -99,6 +101,31 @@
         
         pagingScrollView;
     });
+    
+    _diaryButton = ({
+        UIButton *button = [ZKUIFactory buttonWithImageName:@"diary_normal" highlightImageName:nil target:self action:@selector(diaryButtonClicked)];
+        [_pagingScrollView insertSubview:button atIndex:0];
+        [button mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.size.sizeOffset(CGSizeMake(66, 44));
+            make.left.equalTo(_pagingScrollView).offset(8);
+            make.bottom.equalTo(_pagingScrollView).offset(-73);
+        }];
+        
+        button;
+    });
+    
+//    _moreButton = ({
+//        UIButton *button = [ZKUIFactory buttonWithImageName:@"share_image" highlightImageName:nil target:self action:@selector(moreButtonClicked)];
+//        [_pagingScrollView insertSubview:button atIndex:1];
+//        [button mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.width.height.equalTo(@44);
+//            make.right.equalTo(_pagingScrollView).offset(-8);
+//            make.bottom.equalTo(_diaryButton);
+//        }];
+//        
+//        button;
+//    });
+//    
     _likeNumLabel = ({
         UILabel *label = [UILabel new];
         label.textColor = ZKDarkGrayTextColor;
@@ -106,11 +133,23 @@
         [_pagingScrollView insertSubview:label atIndex:2];
         [label mas_makeConstraints:^(MASConstraintMaker *make) {
             make.width.height.equalTo(@44);
-//            make.right.equalTo(_moreButton.mas_left);
-//            make.bottom.equalTo(_diaryButton);
+           // make.right.equalTo(_moreButton.mas_left);
+            make.bottom.equalTo(_diaryButton);
         }];
         
         label;
+    });
+    
+    _likeButton = ({
+        UIButton *button = [ZKUIFactory buttonWithImageName:@"like_normal" selectedImageName:@"like_selected" target:self action:@selector(likeButtonClicked)];
+        [_pagingScrollView insertSubview:button atIndex:3];
+        [button mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.width.height.equalTo(@44);
+            make.right.equalTo(_likeNumLabel.mas_left);
+            make.bottom.equalTo(_diaryButton);
+        }];
+        
+        button;
     });
     
 }
@@ -157,12 +196,27 @@
     [_pagingScrollView setCurrentPageIndex:(_dataSource.count - 1) reloadData:NO];
   
 }
+- (void)diaryButtonClicked {
+   // [self presentLoginOptsViewController];
+}
 
+- (void)likeButtonClicked {
+    
+}
+
+- (void)moreButtonClicked {
+//    [self.view mlb_showPopMenuViewWithMenuSelectedBlock:^(MLBPopMenuType menuType) {
+//        DDLogDebug(@"menuType = %ld"; menuType);
+//    }];
+}
 #pragma mark - Network Request
 
 - (void)requestHomeMore {
     __weak typeof(self) weakSelf = self;
-    weakSelf.dataSource=@[@"sd",@"sd"];
+    NSArray *data=@[@"{{\"author_id\":\"-1\",\"hp_author\":\"tt\",\"commentnum\":0,\"hp_content\":\"dsffsfs\",\"hpcontent_id\":\"1692\",\"ipad_url\":\"http://image.wufazhuce.com/Fj67uq3D5GoUxYusA7UsadN9Thu_\", \"hp_img_original_url\":\"http://image.wufazhuce.com/Fj67uq3D5GoUxYusA7UsadN9Thu_\",\"hp_img_url\":\"http://image.wufazhuce.com/Fj67uq3D5GoUxYusA7UsadN9Thu_\",\"last_update_date\":\"2017-04-30 09:43:13\",\"hp_makettime\":\"2017-05-01 06:00:00\",\"praisenum\":7794,\"sharenum\":2769,\"hp_title\":\"VOL.1668\",\"wb_img_url\":\"http://m.wufazhuce.com/one/1692\",\"web_url\":\"http://m.wufazhuce.com/one/1692\"},}"];
+    NSError *error;
+    NSArray *items = [MTLJSONAdapter modelsOfClass:[ZKHomeItem class] fromJSONArray:data error:&error];
+    weakSelf.dataSource = items;
 //    [ZKHTTPRequester requestHomeMoreWithSuccess:^(id responseObject) {
 //        __strong typeof(weakSelf) strongSelf = weakSelf;
 //        if (!strongSelf) {
@@ -175,7 +229,7 @@
 //            if (!error) {
 //                strongSelf.dataSource = items;
 //                
-//                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT; 0); ^{
 //                    [NSKeyedArchiver archiveRootObject:strongSelf.dataSource toFile:MLBCacheHomeItemFilePath];
 //                });
 //            } else {

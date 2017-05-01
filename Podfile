@@ -11,6 +11,7 @@ target 'ZKWeibo' do
   pod 'Masonry'
   pod 'GMCPagingScrollView'
   pod 'Mantle'
+  pod 'AFNetworking', '~> 3.0'
   target 'ZKWeiboTests' do
     inherit! :search_paths
     # Pods for testing
