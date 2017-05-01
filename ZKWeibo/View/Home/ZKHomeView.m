@@ -7,7 +7,6 @@
 //
 
 #import "ZKHomeView.h"
-#import "UIImageView+ZKSDImageLoader.h"
 #import "ZKHomeItem.h"
 
 NSString *const kZKHomeViewID = @"ZKHomeViewID";
@@ -91,7 +90,17 @@ NSString *const kZKHomeViewID = @"ZKHomeViewID";
         
         button;
     });
-    
+    _moreButton = ({
+        UIButton *button = [ZKUIFactory buttonWithImageName:nil highlightImageName:nil target:self action:@selector(moreButtonClicked)];
+        [_scrollView addSubview:button];
+        [button mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.width.height.equalTo(@44);
+            make.right.equalTo(_scrollView).offset(-8);
+            make.bottom.equalTo(_diaryButton);
+        }];
+        
+        button;
+    });
     _likeNumLabel = ({
         UILabel *label = [UILabel new];
         label.textColor = ZKDarkGrayTextColor;
@@ -134,8 +143,35 @@ NSString *const kZKHomeViewID = @"ZKHomeViewID";
         
         view;
     });
-
-    
+    _coverView = ({
+        UIImageView *imageView = [UIImageView new];
+        imageView.backgroundColor = [UIColor whiteColor];
+        imageView.contentMode = UIViewContentModeScaleAspectFit;
+        imageView.clipsToBounds = YES;
+        imageView.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(coverTapped)];
+        [imageView addGestureRecognizer:tap];
+        [_contentView addSubview:imageView];
+        [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.top.right.equalTo(_contentView).insets(UIEdgeInsetsMake(6, 6, 0, 6));
+            make.height.equalTo(imageView.mas_width).multipliedBy(0.75);
+        }];
+        
+        imageView;
+    });
+    _volLabel = ({
+        UILabel *label = [UILabel new];
+        label.backgroundColor = [UIColor whiteColor];
+        label.textColor = ZKLightGrayTextColor;
+        label.font = FontWithSize(11);
+        [_contentView addSubview:label];
+        [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_coverView.mas_bottom).offset(10);
+            make.left.equalTo(_coverView);
+        }];
+        
+        label;
+    });
     _titleLabel = ({
         UILabel *label = [UILabel new];
         label.backgroundColor = [UIColor whiteColor];
@@ -199,7 +235,12 @@ NSString *const kZKHomeViewID = @"ZKHomeViewID";
     }
 }
 
+- (void)moreButtonClicked {
 
+}
+- (void)coverTapped {
+    
+}
 #pragma mark - Public Method
 
 - (void)configureViewWithHomeItem:(ZKHomeItem *)homeItem atIndex:(NSInteger)index {

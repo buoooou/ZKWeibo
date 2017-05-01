@@ -16,11 +16,11 @@
     AAPullToRefresh *pullToRefreshRight;
 }
 @property (strong, nonatomic) GMCPagingScrollView *pagingScrollView;
-@property (strong, nonatomic) UIButton *diaryButton;
-@property (strong, nonatomic) UIButton *likeButton;
+//@property (strong, nonatomic) UIButton *diaryButton;
+//@property (strong, nonatomic) UIButton *likeButton;
 @property (strong, nonatomic) UILabel *likeNumLabel;
 
-@property (strong, nonatomic) NSArray *dataSource;
+@property (strong, nonatomic) NSMutableArray *dataSource;
 @end
 
 @implementation ZKHomeViewController
@@ -99,7 +99,20 @@
         
         pagingScrollView;
     });
-
+    _likeNumLabel = ({
+        UILabel *label = [UILabel new];
+        label.textColor = ZKDarkGrayTextColor;
+        label.font = FontWithSize(11);
+        [_pagingScrollView insertSubview:label atIndex:2];
+        [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.width.height.equalTo(@44);
+//            make.right.equalTo(_moreButton.mas_left);
+//            make.bottom.equalTo(_diaryButton);
+        }];
+        
+        label;
+    });
+    
 }
 
 - (void)loadCache {
@@ -149,7 +162,7 @@
 
 - (void)requestHomeMore {
     __weak typeof(self) weakSelf = self;
-//    weakSelf.dataSource=@[@"sd",@"sd"];
+    weakSelf.dataSource=@[@"sd",@"sd"];
 //    [ZKHTTPRequester requestHomeMoreWithSuccess:^(id responseObject) {
 //        __strong typeof(weakSelf) strongSelf = weakSelf;
 //        if (!strongSelf) {
