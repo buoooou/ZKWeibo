@@ -43,6 +43,7 @@
     [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
     [manager GET:[ZKHTTPRequester urlWithApi:api] parameters:nil progress:NULL success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if (successBlock) {
+
             successBlock(responseObject);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

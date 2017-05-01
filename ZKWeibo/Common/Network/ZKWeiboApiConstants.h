@@ -11,5 +11,5 @@
 
 // 服务器地址
 #define ZKApiServerAddress                     @"http://v3.wufazhuce.com:8000/api"
-#define ZKApiHomePageMore                      @"http://v3.wufazhuce.com:8000/api"
+#define ZKApiHomePageMore                      @"/hp/more/0"
 #endif /* ZKWeiboApiConstants_h */
