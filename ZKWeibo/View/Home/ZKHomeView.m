@@ -7,6 +7,8 @@
 //
 
 #import "ZKHomeView.h"
+#import "UIImageView+ZKSDImageLoader.h"
+#import "ZKHomeItem.h"
 
 NSString *const kZKHomeViewID = @"ZKHomeViewID";
 @interface ZKHomeView ()
@@ -90,18 +92,6 @@ NSString *const kZKHomeViewID = @"ZKHomeViewID";
         button;
     });
     
-    _moreButton = ({
-        UIButton *button = [ZKUIFactory buttonWithImageName:nil highlightImageName:nil target:self action:@selector(moreButtonClicked)];
-        [_scrollView addSubview:button];
-        [button mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.width.height.equalTo(@44);
-            make.right.equalTo(_scrollView).offset(-8);
-            make.bottom.equalTo(_diaryButton);
-        }];
-        
-        button;
-    });
-    
     _likeNumLabel = ({
         UILabel *label = [UILabel new];
         label.textColor = ZKDarkGrayTextColor;
@@ -144,23 +134,7 @@ NSString *const kZKHomeViewID = @"ZKHomeViewID";
         
         view;
     });
-    
-    _coverView = ({
-        UIImageView *imageView = [UIImageView new];
-        imageView.backgroundColor = [UIColor whiteColor];
-        imageView.contentMode = UIViewContentModeScaleAspectFit;
-        imageView.clipsToBounds = YES;
-        imageView.userInteractionEnabled = YES;
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(coverTapped)];
-        [imageView addGestureRecognizer:tap];
-        [_contentView addSubview:imageView];
-        [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.top.right.equalTo(_contentView).insets(UIEdgeInsetsMake(6, 6, 0, 6));
-            make.height.equalTo(imageView.mas_width).multipliedBy(0.75);
-        }];
-        
-        imageView;
-    });
+
     
     _titleLabel = ({
         UILabel *label = [UILabel new];
@@ -213,31 +187,18 @@ NSString *const kZKHomeViewID = @"ZKHomeViewID";
 
 #pragma mark - Action
 
-- (void)coverTapped {
-    [self blowUpImage:_coverView.image referenceRect:_coverView.frame referenceView:_coverView.superview];
-}
-
 - (void)diaryButtonClicked {
     if (_clickedButton) {
-        _clickedButton(MLBActionTypeDiary);
+        _clickedButton(ZKActionTypeDiary);
     }
 }
 
 - (void)likeButtonClicked {
     if (_clickedButton) {
-        _clickedButton(MLBActionTypePraise);
+        _clickedButton(ZKActionTypePraise);
     }
 }
 
-- (void)moreButtonClicked {
-    if (_clickedButton) {
-        _clickedButton(MLBActionTypeMore);
-    } else if (self.parentViewController) {
-        [self.parentViewController.view mlb_showPopMenuViewWithMenuSelectedBlock:^(MLBPopMenuType menuType) {
-            DDLogDebug(@"menuType = %ld", menuType);
-        }];
-    }
-}
 
 #pragma mark - Public Method
 
@@ -248,13 +209,13 @@ NSString *const kZKHomeViewID = @"ZKHomeViewID";
 - (void)configureViewWithHomeItem:(ZKHomeItem *)homeItem atIndex:(NSInteger)index inViewController:(ZKBaseViewController *)parentViewController {
     self.viewIndex = index;
     self.parentViewController = parentViewController;
-    [_coverView mlb_sd_setImageWithURL:homeItem.imageURL placeholderImageName:@"home_cover_placeholder" cachePlachoderImage:NO];
+    [_coverView zk_sd_setImageWithURL:homeItem.imageURL placeholderImageName:@"home_cover_placeholder" cachePlachoderImage:NO];
     _titleLabel.text = homeItem.authorName;
     _dateLabel.text = [ZKUtilities stringDateFormatWithEEEddMMMyyyyByNormalDateString:homeItem.makeTime];
     
-    _contentTextView.attributedText = [ZKUtilities mlb_attributedStringWithText:homeItem.content lineSpacing:MLBLineSpacing font:_contentTextView.font textColor:_contentTextView.textColor];
+    _contentTextView.attributedText = [ZKUtilities zk_attributedStringWithText:homeItem.content lineSpacing:ZKLineSpacing font:_contentTextView.font textColor:_contentTextView.textColor];
     
-    _textViewHeightConstraint.equalTo(@(ceilf([MLBUtilities mlb_rectWithAttributedString:_contentTextView.attributedText size:CGSizeMake((SCREEN_WIDTH - 24 - 12), CGFLOAT_MAX)].size.height) + 50));
+    _textViewHeightConstraint.equalTo(@(ceilf([ZKUtilities zk_rectWithAttributedString:_contentTextView.attributedText size:CGSizeMake((SCREEN_WIDTH - 24 - 12), CGFLOAT_MAX)].size.height) + 50));
     
     _volLabel.text = homeItem.title;
     _scrollView.contentOffset = CGPointZero;

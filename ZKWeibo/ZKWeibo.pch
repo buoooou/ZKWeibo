@@ -38,5 +38,6 @@ typedef NS_ENUM(NSUInteger, ZKActionType) {
 #pragma mark - Other
 
 #import "ZKUtilities.h"
+#import "ZKUIFactory.h"
 
 #endif /* ZKWeibo_pch */

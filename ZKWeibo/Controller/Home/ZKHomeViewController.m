@@ -7,6 +7,7 @@
 //
 
 #import "ZKHomeViewController.h"
+#import "ZKHomeView.h"
 
 @interface ZKHomeViewController ()<GMCPagingScrollViewDataSource, GMCPagingScrollViewDelegate>{
     AAPullToRefresh *pullToRefreshLeft;
