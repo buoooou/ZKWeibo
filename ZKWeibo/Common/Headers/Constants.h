@@ -29,7 +29,9 @@
 #define ZKLineSpacing							8
 
 #define ZKCacheFilesFolderName                 @"CacheFiles"
-
+// 首页图文列表
+#define ZKCacheHomeItemFileName                @"ZKCacheHomeItem"
+#define ZKCacheHomeItemFilePath                [NSString stringWithFormat:@"%@/%@/%@", DocumentsDirectory, ZKCacheFilesFolderName, ZKCacheHomeItemFileName]
 
 #pragma mark - NSUserDefault
 

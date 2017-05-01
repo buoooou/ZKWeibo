@@ -11,7 +11,7 @@
 #import "ZKHTTPRequester.h"
 #import "ZKHomeItem.h"
 
-@interface ZKHomeViewController ()<GMCPagingScrollViewDataSource, GMCPagingScrollViewDelegate>{
+@interface ZKHomeViewController ()<GMCPagingScrollViewDataSource,GMCPagingScrollViewDelegate>{
     AAPullToRefresh *pullToRefreshLeft;
     AAPullToRefresh *pullToRefreshRight;
 }
@@ -29,13 +29,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationController.title=ZKHomeTitle;
+    self.title=ZKHomeTitle;
     [self addNavigationBarRightMeItem];
     [self addNavigationBarLeftSearchItem];
     
     [self initDatas];
     [self setupViews];
-    
+    [self loadCache];
+    [self requestHomeMore];
 }
 
 #pragma lifecycle
@@ -100,6 +101,13 @@
     });
 
 }
+
+- (void)loadCache {
+    id cacheItems = [NSKeyedUnarchiver unarchiveObjectWithFile:ZKCacheHomeItemFilePath];
+    if (cacheItems) {
+        self.dataSource = cacheItems;
+    }
+}
 #pragma mark - Private Method
 
 - (ZKHomeItem *)homeItemAtIndex:(NSInteger)index {
@@ -109,7 +117,18 @@
 - (void)updateLikeNumLabelTextWithItemIndex:(NSInteger)index {
     _likeNumLabel.text = [@([self homeItemAtIndex:index].praiseNum) stringValue];
 }
+#pragma mark - Setter
 
+- (void)setDataSource:(NSArray *)dataSource {
+    _dataSource = dataSource;
+    _pagingScrollView.hidden = NO;
+    [_pagingScrollView reloadData];
+    // 防止加载出来前用户滑动而跳转到了最后一个
+    [_pagingScrollView setCurrentPageIndex:0];
+    if (dataSource.count > 0) {
+        [self updateLikeNumLabelTextWithItemIndex:0];
+    }
+}
 
 #pragma mark - Action
 
@@ -130,6 +149,7 @@
 
 - (void)requestHomeMore {
     __weak typeof(self) weakSelf = self;
+//    weakSelf.dataSource=@[@"sd",@"sd"];
 //    [ZKHTTPRequester requestHomeMoreWithSuccess:^(id responseObject) {
 //        __strong typeof(weakSelf) strongSelf = weakSelf;
 //        if (!strongSelf) {

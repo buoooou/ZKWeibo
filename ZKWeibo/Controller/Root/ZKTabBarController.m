@@ -30,7 +30,7 @@
         UINavigationController *homeNavigationController = [[UINavigationController alloc] initWithRootViewController:homeViewController];
         homeNavigationController.title = ZKHomeTitle;
         
-        [self setViewControllers:@[homeViewController]];
+        [self setViewControllers:@[homeNavigationController]];
         
         [self setupTabBar];
         
