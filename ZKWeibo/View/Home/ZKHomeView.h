@@ -8,7 +8,7 @@
 
 #import "ZKBaseView.h"
 
-FOUNDATION_EXPORT NSString *const kMLBHomeViewID;
+FOUNDATION_EXPORT NSString *const kZKHomeViewID;
 
 @class ZKHomeItem;
 @interface ZKHomeView : ZKBaseView

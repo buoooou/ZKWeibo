@@ -8,6 +8,8 @@
 
 #import "ZKHomeViewController.h"
 #import "ZKHomeView.h"
+#import "ZKHTTPRequester.h"
+#import "ZKHomeItem.h"
 
 @interface ZKHomeViewController ()<GMCPagingScrollViewDataSource, GMCPagingScrollViewDelegate>{
     AAPullToRefresh *pullToRefreshLeft;
@@ -66,7 +68,7 @@
     _pagingScrollView = ({
         GMCPagingScrollView *pagingScrollView = [GMCPagingScrollView new];
         pagingScrollView.backgroundColor = ZKViewControllerBGColor;
-        [pagingScrollView registerClass:[ZKHomeView class] forReuseIdentifier:kMLBHomeViewID];
+        [pagingScrollView registerClass:[ZKHomeView class] forReuseIdentifier:kZKHomeViewID];
         pagingScrollView.dataSource = self;
         pagingScrollView.delegate = self;
         pagingScrollView.pageInsets = UIEdgeInsetsZero;
@@ -97,6 +99,91 @@
         pagingScrollView;
     });
 
+}
+#pragma mark - Private Method
+
+- (ZKHomeItem *)homeItemAtIndex:(NSInteger)index {
+    return _dataSource[index];
+}
+
+- (void)updateLikeNumLabelTextWithItemIndex:(NSInteger)index {
+    _likeNumLabel.text = [@([self homeItemAtIndex:index].praiseNum) stringValue];
+}
+
+
+#pragma mark - Action
+
+- (void)refreshHomeMore {
+    // 很奇怪，不写这行代码的话，_pagingScrollView 里面的 scrollview 的 contentOffset.x 会变成和释放刷新时 contentOffset.x 的绝对值差不多，导致第一个 item 看起来像是左移了，论脑洞的重要性
+    [_pagingScrollView setCurrentPageIndex:0 reloadData:NO];
+    // 刷新
+    [self requestHomeMore];
+}
+
+- (void)showPreviousList {
+    // 原因同上
+    [_pagingScrollView setCurrentPageIndex:(_dataSource.count - 1) reloadData:NO];
+  
+}
+
+#pragma mark - Network Request
+
+- (void)requestHomeMore {
+    __weak typeof(self) weakSelf = self;
+//    [ZKHTTPRequester requestHomeMoreWithSuccess:^(id responseObject) {
+//        __strong typeof(weakSelf) strongSelf = weakSelf;
+//        if (!strongSelf) {
+//            return;
+//        }
+//        
+//        if ([responseObject[@"res"] integerValue] == 0) {
+//            NSError *error;
+//            NSArray *items = [MTLJSONAdapter modelsOfClass:[MLBHomeItem class] fromJSONArray:responseObject[@"data"] error:&error];
+//            if (!error) {
+//                strongSelf.dataSource = items;
+//                
+//                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//                    [NSKeyedArchiver archiveRootObject:strongSelf.dataSource toFile:MLBCacheHomeItemFilePath];
+//                });
+//            } else {
+//                [strongSelf.view showHUDModelTransformFailedWithError:error];
+//            }
+//        } else {
+//            [strongSelf.view showHUDErrorWithText:responseObject[@"msg"]];
+//        }
+//    } fail:^(NSError *error) {
+//        __strong typeof(weakSelf) strongSelf = weakSelf;
+//        if (!strongSelf) {
+//            return;
+//        }
+//        
+//        [strongSelf.view showHUDServerError];
+//    }];
+}
+#pragma mark - GMCPagingScrollViewDataSource
+
+- (NSUInteger)numberOfPagesInPagingScrollView:(GMCPagingScrollView *)pagingScrollView {
+    return _dataSource.count;
+}
+
+- (UIView *)pagingScrollView:(GMCPagingScrollView *)pagingScrollView pageForIndex:(NSUInteger)index {
+    ZKHomeView *view = [pagingScrollView dequeueReusablePageWithIdentifier:kZKHomeViewID];
+    [view configureViewWithHomeItem:[self homeItemAtIndex:index] atIndex:index inViewController:self];
+    
+    return view;
+}
+
+#pragma mark - GMCPagingScrollViewDelegate
+
+- (void)pagingScrollViewDidScroll:(GMCPagingScrollView *)pagingScrollView {
+    if (_pagingScrollView.isDragging) {
+        CGPoint contentOffset = pagingScrollView.scrollView.contentOffset;
+        pagingScrollView.scrollView.contentOffset = CGPointMake(contentOffset.x, 0);
+    }
+}
+
+- (void)pagingScrollView:(GMCPagingScrollView *)pagingScrollView didScrollToPageAtIndex:(NSUInteger)index {
+    [self updateLikeNumLabelTextWithItemIndex:index];
 }
 
 @end
