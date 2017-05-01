@@ -13,4 +13,8 @@
 
 #define UserDefaults            [NSUserDefaults standardUserDefaults]
 
+#pragma mark - Path
+
+#define DocumentsDirectory      [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]
+
 #endif /* ZKMacros_h */

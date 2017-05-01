@@ -24,6 +24,11 @@
 		7E4F66A81EB6162E003F0B4A /* ZKBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4F66A71EB6162E003F0B4A /* ZKBaseViewController.m */; };
 		7E4F66AD1EB616EF003F0B4A /* ZKTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4F66AC1EB616EF003F0B4A /* ZKTabBarController.m */; };
 		7E4F66B01EB61710003F0B4A /* ZKIntroduceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4F66AF1EB61710003F0B4A /* ZKIntroduceViewController.m */; };
+		7E6A0F681EB6DF9300CA709E /* ZKHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6A0F671EB6DF9300CA709E /* ZKHomeViewController.m */; };
+		7E6A0F6E1EB6E15000CA709E /* tab_home_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E6A0F6A1EB6E15000CA709E /* tab_home_normal.png */; };
+		7E6A0F6F1EB6E15000CA709E /* tab_home_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E6A0F6B1EB6E15000CA709E /* tab_home_normal@2x.png */; };
+		7E6A0F701EB6E15000CA709E /* tab_home_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E6A0F6C1EB6E15000CA709E /* tab_home_selected.png */; };
+		7E6A0F711EB6E15000CA709E /* tab_home_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E6A0F6D1EB6E15000CA709E /* tab_home_selected@2x.png */; };
 		904682EA31E3E1D441ADC951 /* libPods-ZKWeiboUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F1A52369226D03055031DF9 /* libPods-ZKWeiboUITests.a */; };
 		D2C1A00958CC8FCCA4E87B6C /* libPods-ZKWeibo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D9086F48AB91B0E00F3B0D19 /* libPods-ZKWeibo.a */; };
 /* End PBXBuildFile section */
@@ -83,6 +88,12 @@
 		7E4F66AC1EB616EF003F0B4A /* ZKTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKTabBarController.m; path = Controller/Root/ZKTabBarController.m; sourceTree = "<group>"; };
 		7E4F66AE1EB61710003F0B4A /* ZKIntroduceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKIntroduceViewController.h; path = Controller/Introduce/ZKIntroduceViewController.h; sourceTree = "<group>"; };
 		7E4F66AF1EB61710003F0B4A /* ZKIntroduceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKIntroduceViewController.m; path = Controller/Introduce/ZKIntroduceViewController.m; sourceTree = "<group>"; };
+		7E6A0F661EB6DF9300CA709E /* ZKHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKHomeViewController.h; path = Controller/Home/ZKHomeViewController.h; sourceTree = "<group>"; };
+		7E6A0F671EB6DF9300CA709E /* ZKHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKHomeViewController.m; path = Controller/Home/ZKHomeViewController.m; sourceTree = "<group>"; };
+		7E6A0F6A1EB6E15000CA709E /* tab_home_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab_home_normal.png; sourceTree = "<group>"; };
+		7E6A0F6B1EB6E15000CA709E /* tab_home_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_home_normal@2x.png"; sourceTree = "<group>"; };
+		7E6A0F6C1EB6E15000CA709E /* tab_home_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab_home_selected.png; sourceTree = "<group>"; };
+		7E6A0F6D1EB6E15000CA709E /* tab_home_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_home_selected@2x.png"; sourceTree = "<group>"; };
 		9490168A1F62024DE98059A4 /* libPods-ZKWeiboTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZKWeiboTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F178BD1D8916FB690857763 /* Pods-ZKWeiboTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZKWeiboTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZKWeiboTests/Pods-ZKWeiboTests.release.xcconfig"; sourceTree = "<group>"; };
 		D9086F48AB91B0E00F3B0D19 /* libPods-ZKWeibo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZKWeibo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -143,6 +154,8 @@
 		7E3F14201EB630FD00DABE64 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				7E6A0F661EB6DF9300CA709E /* ZKHomeViewController.h */,
+				7E6A0F671EB6DF9300CA709E /* ZKHomeViewController.m */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -176,6 +189,7 @@
 		7E3F14311EB6435700DABE64 /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				7E6A0F691EB6E15000CA709E /* TabBar */,
 				7E3F14371EB643B400DABE64 /* User */,
 				7E3F14321EB6435700DABE64 /* Search */,
 			);
@@ -333,6 +347,17 @@
 			name = Root;
 			sourceTree = "<group>";
 		};
+		7E6A0F691EB6E15000CA709E /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				7E6A0F6A1EB6E15000CA709E /* tab_home_normal.png */,
+				7E6A0F6B1EB6E15000CA709E /* tab_home_normal@2x.png */,
+				7E6A0F6C1EB6E15000CA709E /* tab_home_selected.png */,
+				7E6A0F6D1EB6E15000CA709E /* tab_home_selected@2x.png */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -453,8 +478,12 @@
 			files = (
 				7E3F14351EB6435700DABE64 /* icon_search.png in Resources */,
 				7E3F143B1EB643B400DABE64 /* nav_me_normal@2x.png in Resources */,
+				7E6A0F6F1EB6E15000CA709E /* tab_home_normal@2x.png in Resources */,
 				7E3F14361EB6435700DABE64 /* icon_search@2x.png in Resources */,
 				7E4F66771EB60D40003F0B4A /* LaunchScreen.storyboard in Resources */,
+				7E6A0F701EB6E15000CA709E /* tab_home_selected.png in Resources */,
+				7E6A0F711EB6E15000CA709E /* tab_home_selected@2x.png in Resources */,
+				7E6A0F6E1EB6E15000CA709E /* tab_home_normal.png in Resources */,
 				7E4F66741EB60D40003F0B4A /* Assets.xcassets in Resources */,
 				7E3F143A1EB643B400DABE64 /* nav_me_normal.png in Resources */,
 			);
@@ -620,6 +649,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E4F66B01EB61710003F0B4A /* ZKIntroduceViewController.m in Sources */,
+				7E6A0F681EB6DF9300CA709E /* ZKHomeViewController.m in Sources */,
 				7E3F142A1EB640E000DABE64 /* ZKUserHomeViewController.m in Sources */,
 				7E4F66691EB60D40003F0B4A /* AppDelegate.m in Sources */,
 				7E4F66A01EB6121A003F0B4A /* ZKUtilities.m in Sources */,
