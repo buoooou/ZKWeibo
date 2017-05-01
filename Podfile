@@ -9,6 +9,8 @@ target 'ZKWeibo' do
   pod 'CocoaLumberjack'
   pod 'SDWebImage', '~>3.8'
   pod 'Masonry'
+  pod 'GMCPagingScrollView'
+  pod 'Mantle'
   target 'ZKWeiboTests' do
     inherit! :search_paths
     # Pods for testing
