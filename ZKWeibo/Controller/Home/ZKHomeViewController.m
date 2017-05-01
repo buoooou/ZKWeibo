@@ -213,10 +213,6 @@
 
 - (void)requestHomeMore {
     __weak typeof(self) weakSelf = self;
-//    NSArray *data=@[@"{{\"author_id\":\"-1\",\"hp_author\":\"tt\",\"commentnum\":0,\"hp_content\":\"dsffsfs\",\"hpcontent_id\":\"1692\",\"ipad_url\":\"http://image.wufazhuce.com/Fj67uq3D5GoUxYusA7UsadN9Thu_\", \"hp_img_original_url\":\"http://image.wufazhuce.com/Fj67uq3D5GoUxYusA7UsadN9Thu_\",\"hp_img_url\":\"http://image.wufazhuce.com/Fj67uq3D5GoUxYusA7UsadN9Thu_\",\"last_update_date\":\"2017-04-30 09:43:13\",\"hp_makettime\":\"2017-05-01 06:00:00\",\"praisenum\":7794,\"sharenum\":2769,\"hp_title\":\"VOL.1668\",\"wb_img_url\":\"http://m.wufazhuce.com/one/1692\",\"web_url\":\"http://m.wufazhuce.com/one/1692\"},}"];
-//    NSError *error;
-//    NSArray *items = [MTLJSONAdapter modelsOfClass:[ZKHomeItem class] fromJSONArray:data error:&error];
-//    weakSelf.dataSource = items;
     [ZKHTTPRequester requestHomeMoreWithSuccess:^(id responseObject) {
         __strong typeof(weakSelf) strongSelf = weakSelf;
         if (!strongSelf) {
