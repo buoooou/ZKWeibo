@@ -113,19 +113,7 @@
         
         button;
     });
-    
-//    _moreButton = ({
-//        UIButton *button = [ZKUIFactory buttonWithImageName:@"share_image" highlightImageName:nil target:self action:@selector(moreButtonClicked)];
-//        [_pagingScrollView insertSubview:button atIndex:1];
-//        [button mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.width.height.equalTo(@44);
-//            make.right.equalTo(_pagingScrollView).offset(-8);
-//            make.bottom.equalTo(_diaryButton);
-//        }];
-//        
-//        button;
-//    });
-//    
+
     _likeNumLabel = ({
         UILabel *label = [UILabel new];
         label.textColor = ZKDarkGrayTextColor;

@@ -17,4 +17,5 @@ typedef void(^FailBlock)(NSError *error);
 
 // 首页图文列表
 + (void)requestHomeMoreWithSuccess:(SuccessBlock)successBlock fail:(FailBlock)failBlock ;
++(void)requestAuthTokenWithParam:(id)para Success:(SuccessBlock)successBlock fail:(FailBlock)failBlock ;
 @end

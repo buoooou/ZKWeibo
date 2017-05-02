@@ -8,6 +8,7 @@
 
 #import "ZKTabBarController.h"
 #import "ZKHomeViewController.h"
+#import "ZKHTTPRequester.h"
 
 @interface ZKTabBarController ()
 
@@ -35,6 +36,8 @@
         [self setupTabBar];
         
         [self createCacheFilesFolder];
+        
+        [self createWeiboAuthToken];
     }
     return self;
 }
@@ -61,7 +64,18 @@
         index++;
     }
 }
+-(void)createWeiboAuthToken{
 
+    NSDictionary *parameters = @{@"client_id": @"2076399685",@"client_secret":@"aeeb5c02b28b79f612704b4bd1dbd2fe" ,@"redirect_uri": @"https://api.weibo.com/oauth2/default.html"};
+    
+    [ZKHTTPRequester requestAuthTokenWithParam:parameters Success:^(id responseObject) {
+        DDLogDebug(@"测试授权 %@ ",responseObject);
+    } fail:^(NSError *error) {
+        DDLogDebug(@" 授权错误%@ ",error);
+
+    }];
+
+}
 - (void)createCacheFilesFolder {
     NSString *cacheFilesFolderPath = [NSString stringWithFormat:@"%@/%@", DocumentsDirectory, ZKCacheFilesFolderName];
     NSFileManager *fileManager = [NSFileManager defaultManager];

@@ -10,6 +10,8 @@
 #define ZKWeiboApiConstants_h
 
 // 服务器地址
-#define ZKApiServerAddress                     @"http://v3.wufazhuce.com:8000/api"
+#define ZKApiServerAddress                     @"https://api.weibo.com"
+#define ZKApiAuthorize                         @"/oauth2/access_token"
 #define ZKApiHomePageMore                      @"/hp/more/0"
+
 #endif /* ZKWeiboApiConstants_h */
