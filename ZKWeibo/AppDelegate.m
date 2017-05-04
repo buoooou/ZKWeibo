@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "ZKIntroduceViewController.h"
-#import "ZKTabBarController.h"
+#import "ZKLoginViewController.h"
 
 @interface AppDelegate ()
 
@@ -52,7 +52,7 @@
 
 
 - (void)showMainTabBarControllers {
-    _window.rootViewController = [[ZKTabBarController alloc] init];
+    _window.rootViewController = [[ZKLoginViewController alloc] init];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

@@ -11,7 +11,7 @@
 
 // 服务器地址
 #define ZKApiServerAddress                     @"https://api.weibo.com"
-#define ZKApiAuthorize                         @"/oauth2/access_token"
+#define ZKApiAccessToken                       @"/oauth2/access_token"
 #define ZKApiHomePageMore                      @"/hp/more/0"
 
 #endif /* ZKWeiboApiConstants_h */

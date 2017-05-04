@@ -36,9 +36,10 @@
     [ZKHTTPRequester getWithURI:ZKApiHomePageMore success:successBlock fail:failBlock];
 }
 
+
 //授权token获取
-+(void)requestAuthTokenWithParam:(id)para Success:(SuccessBlock)successBlock fail:(FailBlock)failBlock {
-    [ZKHTTPRequester getWithURI:ZKApiAuthorize param:para success:successBlock fail:failBlock];
++(void)requestAccessTokenWithParam:(id)para Success:(SuccessBlock)successBlock fail:(FailBlock)failBlock {
+    [ZKHTTPRequester getWithURI:ZKApiAccessToken param:para success:successBlock fail:failBlock];
 }
 
 
@@ -59,7 +60,9 @@
 }
 
 +(void)getWithURI:(NSString *)api param:(id)para success:(SuccessBlock)successBlock fail:(FailBlock)failBlock{
+
     AFHTTPSessionManager *manager = [ZKHTTPRequester AFHTTPSessionManager];
+
     [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
     [manager GET:[ZKHTTPRequester urlWithApi:api] parameters:para progress:NULL success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if (successBlock) {
