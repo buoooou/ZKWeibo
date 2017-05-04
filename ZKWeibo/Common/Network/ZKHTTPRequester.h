@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "ZKWeiboApiConstants.h"
 // 成功，失败 block
 typedef void(^SuccessBlock)(id responseObject);
 typedef void(^FailBlock)(NSError *error);

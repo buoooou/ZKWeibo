@@ -8,34 +8,58 @@
 
 #import "ZKLoginViewController.h"
 #import "ZKHTTPRequester.h"
-@interface ZKLoginViewController ()
+
+@interface ZKLoginViewController ()<UIWebViewDelegate>
 
 @end
 
-@implementation ZKLoginViewController
+@implementation ZKLoginViewController{
+    UIWebView *loginView;
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-     [self createWeiboAuthToken];
+    [self initDatas];
+    [self setupViews];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
--(void)createWeiboAuthToken{
+-(void )setupViews{
+    [self addNavigationBarRightMeItem];
+    [self addNavigationBarLeftSearchItem];
+    loginView =[[UIWebView alloc]initWithFrame:CGRectMake(0, 20, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame))];
+    
+    [self.view addSubview:loginView];
+    NSURL *url=[NSURL URLWithString:[NSString stringWithFormat:@"https://api.weibo.com/oauth2/authorize?client_id=%@&response_type=code&redirect_uri=https://api.weibo.com/oauth2/default.html",ZKWeiboClientId]];//创建URL
+    NSURLRequest* request = [NSURLRequest requestWithURL:url];//创建NSURLRequest
+    [loginView loadRequest:request];//加载
+}
+-(void)initDatas{
+
+}
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
+    
+    return NO;
     
     
+}
+- (void)webViewDidStartLoad:(UIWebView *)webView{
+    DDLogDebug(@"webViewDidStartLoad");
+}
+- (void)webViewDidFinishLoad:(UIWebView *)webView{
+    DDLogDebug(@"webViewDidFinishLoad");
+}
+
+
+-(void)createWeiboAuthTokenWithCode:(NSString *)code{
     
-    NSURL *url=[NSURL URLWithString:@"https://api.weibo.com/oauth2/authorize?client_id=2076399685&response_type=code&redirect_uri=https://api.weibo.com/oauth2/default.html"];
-    
-    NSString * s=[NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:NULL];
-    NSLog(@" 而是 %@ ",s);
-    
-    
-    NSString *code=@"";
-    NSDictionary *parameters = @{@"client_id": @"2076399685",@"client_secret":@"aeeb5c02b28b79f612704b4bd1dbd2fe" ,@"redirect_uri": @"https://api.weibo.com/oauth2/default.html",@"grant_type":@"authorization_code",@"code":code};
+    NSDictionary *parameters = @{@"client_id": ZKWeiboClientId,@"client_secret":ZKWeiboClientSecret ,@"redirect_uri": @"https://api.weibo.com/oauth2/default.html",@"grant_type":@"authorization_code",@"code":code};
     
     [ZKHTTPRequester requestAccessTokenWithParam:parameters Success:^(id responseObject) {
         DDLogDebug(@" 测试授权 %@ ",responseObject);

@@ -73,6 +73,14 @@
         return YES;
     }
 }
+-(UINavigationItem*)navigationItem{
+    
+    if (self.tabBarController) {
+        return [self.tabBarController navigationItem];
+    }
+    return [super navigationItem];
+}
+
 #pragma mark - UI
 
 - (void)addNavigationBarLeftSearchItem {

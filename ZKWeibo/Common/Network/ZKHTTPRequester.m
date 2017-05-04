@@ -9,7 +9,7 @@
 #import "ZKHTTPRequester.h"
 #import <AFNetworking/AFNetworking.h>
 #import <AFNetworking/AFNetworkActivityIndicatorManager.h>
-#import "ZKWeiboApiConstants.h"
+
 
 @implementation ZKHTTPRequester
 
