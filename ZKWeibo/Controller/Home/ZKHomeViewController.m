@@ -201,12 +201,15 @@
 
 - (void)requestHomeMore {
     __weak typeof(self) weakSelf = self;
-    [ZKHTTPRequester requestHomeMoreWithSuccess:^(id responseObject) {
+    NSString * accessToken=[UserDefaults objectForKey:ZKWeiboAccessToken];
+    NSDictionary *para=@{@"access_token":accessToken};
+    
+    [ZKHTTPRequester requestHomeMoreWithParam:para Success:^(id responseObject) {
         __strong typeof(weakSelf) strongSelf = weakSelf;
         if (!strongSelf) {
             return;
         }
-        
+        DDLogDebug(@"热门 %@",responseObject);
         if ([responseObject[@"res"] integerValue] == 0) {
             NSError *error;
             NSArray *items = [MTLJSONAdapter modelsOfClass:[ZKHomeItem class] fromJSONArray:responseObject[@"data"] error:&error];
