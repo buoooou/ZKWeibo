@@ -71,6 +71,12 @@
     
     [ZKHTTPRequester requestAccessTokenWithParam:parameters Success:^(id responseObject) {
         DDLogDebug(@" 测试授权 %@ ",responseObject);
+        [UserDefaults setObject:responseObject[@"access_token"] forKey:ZKWeiboAccessToken];
+        [UserDefaults setObject:responseObject[@"expires_in"] forKey:ZKWeiboAccessTokenExpiresTime];
+
+        NSDate *expires_date = [NSDate dateWithTimeIntervalSinceNow:[responseObject[@"expires_in"] longLongValue]];
+        [UserDefaults setObject:expires_date forKey:ZKWeiboAccessTokenExpiresDate];
+        
         [(AppDelegate *)[UIApplication sharedApplication].delegate showMainTabBarControllers];
     } fail:^(NSError *error) {
         DDLogDebug(@" 授权错误 %@ ",error);

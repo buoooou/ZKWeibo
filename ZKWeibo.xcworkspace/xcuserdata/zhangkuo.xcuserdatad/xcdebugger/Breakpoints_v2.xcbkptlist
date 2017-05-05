@@ -38,32 +38,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Pods/Mantle/Mantle/MTLJSONAdapter.m"
-            timestampString = "515335953.859283"
+            filePath = "ZKWeibo/Controller/Login/ZKLoginViewController.m"
+            timestampString = "515691614.369489"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
-            landmarkName = "+modelsOfClass:fromJSONArray:error:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Pods/Mantle/Mantle/MTLJSONAdapter.m"
-            timestampString = "515336037.020449"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "260"
-            endingLineNumber = "260"
-            landmarkName = "-modelFromJSONDictionary:error:"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
+            landmarkName = "-createWeiboAuthTokenWithCode:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

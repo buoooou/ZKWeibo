@@ -37,6 +37,8 @@
 
 #define ZKLastShowIntroduceVersionAndBuild     @"ZKLastShowIntroduceVersionAndBuild"
 
-
+#define ZKWeiboAccessToken                     @"ZKWeiboAccessToken"
+#define ZKWeiboAccessTokenExpiresTime          @"ZKWeiboAccessTokenExpiresTime"
+#define ZKWeiboAccessTokenExpiresDate          @"ZKWeiboAccessTokenExpiresDate"
 
 #endif /* Header_h */

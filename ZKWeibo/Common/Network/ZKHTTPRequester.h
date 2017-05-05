@@ -16,7 +16,7 @@ typedef void(^FailBlock)(NSError *error);
 #pragma mark - Home Page
 
 // 首页图文列表
-+ (void)requestHomeMoreWithSuccess:(SuccessBlock)successBlock fail:(FailBlock)failBlock ;
++ (void)requestHomeMoreWithParam:(id)para Success:(SuccessBlock)successBlock fail:(FailBlock)failBlock ;
 //+(void)requestAuthorizeWithParam:(id)para Success:(SuccessBlock)successBlock fail:(FailBlock)failBlock ;
 +(void)requestAccessTokenWithParam:(id)para Success:(SuccessBlock)successBlock fail:(FailBlock)failBlock ;
 

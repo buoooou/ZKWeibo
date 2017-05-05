@@ -15,6 +15,6 @@
 // 服务器地址
 #define ZKApiServerAddress                     @"https://api.weibo.com"
 #define ZKApiAccessToken                       @"/oauth2/access_token"
-#define ZKApiHomePageMore                      @"/hp/more/0"
+#define ZKApiPublic                            @"/2/statuses/public_timeline.json"
 
 #endif /* ZKWeiboApiConstants_h */

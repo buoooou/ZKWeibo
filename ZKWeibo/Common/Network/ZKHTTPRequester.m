@@ -32,31 +32,14 @@
 #pragma mark - Home Page
 
 // 首页图文列表
-+ (void)requestHomeMoreWithSuccess:(SuccessBlock)successBlock fail:(FailBlock)failBlock {
-    [ZKHTTPRequester getWithURI:ZKApiHomePageMore success:successBlock fail:failBlock];
++ (void)requestHomeMoreWithParam:(id)para Success:(SuccessBlock)successBlock fail:(FailBlock)failBlock {
+    [ZKHTTPRequester getWithURI:ZKApiPublic param:para success:successBlock fail:failBlock];
 }
 
 
 //授权token获取
 +(void)requestAccessTokenWithParam:(id)para Success:(SuccessBlock)successBlock fail:(FailBlock)failBlock {
     [ZKHTTPRequester postWithURI:ZKApiAccessToken param:para success:successBlock fail:failBlock];
-}
-
-
-+ (void)getWithURI:(NSString *)api success:(SuccessBlock)successBlock fail:(FailBlock)failBlock {
-    AFHTTPSessionManager *manager = [ZKHTTPRequester AFHTTPSessionManager];
-    [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
-    [manager GET:[ZKHTTPRequester urlWithApi:api] parameters:nil progress:NULL success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        if (successBlock) {
-
-            successBlock(responseObject);
-        }
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        DDLogDebug(@"operation = %@, error = %@", task, error);
-        if (failBlock) {
-            failBlock(error);
-        }
-    }];
 }
 
 +(void)getWithURI:(NSString *)api param:(id)para success:(SuccessBlock)successBlock fail:(FailBlock)failBlock{

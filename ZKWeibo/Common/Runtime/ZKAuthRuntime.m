@@ -12,6 +12,13 @@
 
 +(BOOL)isAuthCodeOutOfTime{
 
+    NSDate * expires_date=[UserDefaults objectForKey:ZKWeiboAccessTokenExpiresDate];
+    if(expires_date){
+        if ([[NSDate date] compare:expires_date] != NSOrderedAscending) { // 过期
+            return YES;
+        }
+        return NO;
+    }
    
     return YES;
 }
