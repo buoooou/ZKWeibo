@@ -9,7 +9,8 @@
 #import "AppDelegate.h"
 #import "ZKIntroduceViewController.h"
 #import "ZKLoginViewController.h"
-
+#import "ZKTabBarController.h"
+#import "ZKAuthRuntime.h"
 @interface AppDelegate ()
 
 @end
@@ -52,7 +53,12 @@
 
 
 - (void)showMainTabBarControllers {
-    _window.rootViewController = [[ZKLoginViewController alloc] init];
+    if([ZKAuthRuntime isAuthCodeOutOfTime]){
+        _window.rootViewController = [[ZKLoginViewController alloc] init];
+    }else{
+        _window.rootViewController = [[ZKTabBarController alloc] init];
+    }
+    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

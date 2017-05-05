@@ -8,6 +8,7 @@
 
 #import "ZKLoginViewController.h"
 #import "ZKHTTPRequester.h"
+#import "AppDelegate.h"
 
 @interface ZKLoginViewController ()<UIWebViewDelegate>
 
@@ -30,10 +31,9 @@
     // Dispose of any resources that can be recreated.
 }
 -(void )setupViews{
-    [self addNavigationBarRightMeItem];
-    [self addNavigationBarLeftSearchItem];
+
     loginView =[[UIWebView alloc]initWithFrame:CGRectMake(0, 20, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame))];
-    
+    loginView.delegate = self;
     [self.view addSubview:loginView];
     NSURL *url=[NSURL URLWithString:[NSString stringWithFormat:@"https://api.weibo.com/oauth2/authorize?client_id=%@&response_type=code&redirect_uri=https://api.weibo.com/oauth2/default.html",ZKWeiboClientId]];//创建URL
     NSURLRequest* request = [NSURLRequest requestWithURL:url];//创建NSURLRequest
@@ -45,7 +45,15 @@
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
     
-    return NO;
+    NSString *req=request.URL.absoluteString;
+    NSRange range = [req rangeOfString:@"code="];
+    if(range.length){
+        NSString *code = [req substringFromIndex:range.location + range.length];
+    
+        [self createWeiboAuthTokenWithCode:code];
+        return NO;
+    }
+    return YES;
     
     
 }
@@ -63,6 +71,7 @@
     
     [ZKHTTPRequester requestAccessTokenWithParam:parameters Success:^(id responseObject) {
         DDLogDebug(@" 测试授权 %@ ",responseObject);
+        [(AppDelegate *)[UIApplication sharedApplication].delegate showMainTabBarControllers];
     } fail:^(NSError *error) {
         DDLogDebug(@" 授权错误 %@ ",error);
         

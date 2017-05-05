@@ -19,4 +19,5 @@ typedef void(^FailBlock)(NSError *error);
 + (void)requestHomeMoreWithSuccess:(SuccessBlock)successBlock fail:(FailBlock)failBlock ;
 //+(void)requestAuthorizeWithParam:(id)para Success:(SuccessBlock)successBlock fail:(FailBlock)failBlock ;
 +(void)requestAccessTokenWithParam:(id)para Success:(SuccessBlock)successBlock fail:(FailBlock)failBlock ;
+
 @end

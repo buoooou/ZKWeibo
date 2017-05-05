@@ -39,7 +39,7 @@
 
 //授权token获取
 +(void)requestAccessTokenWithParam:(id)para Success:(SuccessBlock)successBlock fail:(FailBlock)failBlock {
-    [ZKHTTPRequester getWithURI:ZKApiAccessToken param:para success:successBlock fail:failBlock];
+    [ZKHTTPRequester postWithURI:ZKApiAccessToken param:para success:successBlock fail:failBlock];
 }
 
 
@@ -70,6 +70,24 @@
             successBlock(responseObject);
         }
 
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        DDLogDebug(@"operation = %@, error = %@", task, error);
+        if (failBlock) {
+            failBlock(error);
+        }
+    }];
+}
++(void)postWithURI:(NSString *)api param:(id)para success:(SuccessBlock)successBlock fail:(FailBlock)failBlock{
+    
+    AFHTTPSessionManager *manager = [ZKHTTPRequester AFHTTPSessionManager];
+    
+    [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
+    [manager POST:[ZKHTTPRequester urlWithApi:api] parameters:para progress:NULL success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if (successBlock) {
+            
+            successBlock(responseObject);
+        }
+        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         DDLogDebug(@"operation = %@, error = %@", task, error);
         if (failBlock) {
