@@ -8,6 +8,6 @@
 
 #import "ZKBaseViewController.h"
 
-@interface ZKLoginViewController : ZKBaseViewController
+@interface ZKAuthViewController : ZKBaseViewController
 
 @end

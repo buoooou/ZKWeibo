@@ -6,15 +6,15 @@
 //  Copyright © 2017年 张阔. All rights reserved.
 //
 
-#import "ZKLoginViewController.h"
+#import "ZKAuthViewController.h"
 #import "ZKHTTPRequester.h"
 #import "AppDelegate.h"
 
-@interface ZKLoginViewController ()<UIWebViewDelegate>
+@interface ZKAuthViewController ()<UIWebViewDelegate>
 
 @end
 
-@implementation ZKLoginViewController{
+@implementation ZKAuthViewController{
     UIWebView *loginView;
     
 }

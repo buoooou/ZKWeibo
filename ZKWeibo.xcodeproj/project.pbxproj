@@ -38,7 +38,7 @@
 		7E6A0F901EB7111300CA709E /* UIImageView+ZKSDImageLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6A0F8F1EB7111300CA709E /* UIImageView+ZKSDImageLoader.m */; };
 		7E6A0F931EB711CD00CA709E /* NSString+ZKUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6A0F921EB711CD00CA709E /* NSString+ZKUtilities.m */; };
 		7E6A0F971EB717F200CA709E /* ZKHTTPRequester.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6A0F961EB717F200CA709E /* ZKHTTPRequester.m */; };
-		7EA5587D1EBB667E00D1F015 /* ZKLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5587C1EBB667E00D1F015 /* ZKLoginViewController.m */; };
+		7E9E074A1EBDBA9F0026F7EF /* ZKAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E9E07491EBDBA9F0026F7EF /* ZKAuthViewController.m */; };
 		7EA558861EBCC34800D1F015 /* ZKAuthRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA558851EBCC34800D1F015 /* ZKAuthRuntime.m */; };
 		937A238C6D75197495BC665F /* libPods-ZKWeibo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CF0B8610F7F7645C98D869CC /* libPods-ZKWeibo.a */; };
 		E7D9D995E1A46D2778E314C8 /* libPods-ZKWeiboTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4AC8B99050AC6B86C825FAA /* libPods-ZKWeiboTests.a */; };
@@ -123,8 +123,8 @@
 		7E6A0F921EB711CD00CA709E /* NSString+ZKUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+ZKUtilities.m"; path = "Common/Catagory/NSString+ZKUtilities.m"; sourceTree = "<group>"; };
 		7E6A0F951EB717F200CA709E /* ZKHTTPRequester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKHTTPRequester.h; path = Common/Network/ZKHTTPRequester.h; sourceTree = "<group>"; };
 		7E6A0F961EB717F200CA709E /* ZKHTTPRequester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKHTTPRequester.m; path = Common/Network/ZKHTTPRequester.m; sourceTree = "<group>"; };
-		7EA5587B1EBB667E00D1F015 /* ZKLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKLoginViewController.h; path = Controller/Login/ZKLoginViewController.h; sourceTree = "<group>"; };
-		7EA5587C1EBB667E00D1F015 /* ZKLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKLoginViewController.m; path = Controller/Login/ZKLoginViewController.m; sourceTree = "<group>"; };
+		7E9E07481EBDBA9F0026F7EF /* ZKAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKAuthViewController.h; path = Controller/Auth/ZKAuthViewController.h; sourceTree = "<group>"; };
+		7E9E07491EBDBA9F0026F7EF /* ZKAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKAuthViewController.m; path = Controller/Auth/ZKAuthViewController.m; sourceTree = "<group>"; };
 		7EA558841EBCC34800D1F015 /* ZKAuthRuntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKAuthRuntime.h; path = Common/Runtime/ZKAuthRuntime.h; sourceTree = "<group>"; };
 		7EA558851EBCC34800D1F015 /* ZKAuthRuntime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKAuthRuntime.m; path = Common/Runtime/ZKAuthRuntime.m; sourceTree = "<group>"; };
 		934253252A9FD7ECE719CAB8 /* libPods-ZKWeiboUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZKWeiboUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -352,7 +352,7 @@
 		7E4F66A11EB615C4003F0B4A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				7EA558771EBB662600D1F015 /* Login */,
+				7EA558771EBB662600D1F015 /* Auth */,
 				7E3F14271EB640C900DABE64 /* User */,
 				7E3F14231EB6400700DABE64 /* Search */,
 				7E3F14201EB630FD00DABE64 /* Home */,
@@ -477,13 +477,13 @@
 			name = Network;
 			sourceTree = "<group>";
 		};
-		7EA558771EBB662600D1F015 /* Login */ = {
+		7EA558771EBB662600D1F015 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				7EA5587B1EBB667E00D1F015 /* ZKLoginViewController.h */,
-				7EA5587C1EBB667E00D1F015 /* ZKLoginViewController.m */,
+				7E9E07481EBDBA9F0026F7EF /* ZKAuthViewController.h */,
+				7E9E07491EBDBA9F0026F7EF /* ZKAuthViewController.m */,
 			);
-			name = Login;
+			name = Auth;
 			sourceTree = "<group>";
 		};
 		7EA5587F1EBCC2EC00D1F015 /* Runtime */ = {
@@ -788,11 +788,11 @@
 				7E6A0F891EB70D2F00CA709E /* ZKUIFactory.m in Sources */,
 				7E6A0F931EB711CD00CA709E /* NSString+ZKUtilities.m in Sources */,
 				7E6A0F861EB70A6200CA709E /* ZKHomeItem.m in Sources */,
+				7E9E074A1EBDBA9F0026F7EF /* ZKAuthViewController.m in Sources */,
 				7E6A0F7B1EB7078900CA709E /* ZKHomeView.m in Sources */,
 				7E4F66B01EB61710003F0B4A /* ZKIntroduceViewController.m in Sources */,
 				7EA558861EBCC34800D1F015 /* ZKAuthRuntime.m in Sources */,
 				7E6A0F681EB6DF9300CA709E /* ZKHomeViewController.m in Sources */,
-				7EA5587D1EBB667E00D1F015 /* ZKLoginViewController.m in Sources */,
 				7E3F142A1EB640E000DABE64 /* ZKUserHomeViewController.m in Sources */,
 				7E4F66691EB60D40003F0B4A /* AppDelegate.m in Sources */,
 				7E6A0F831EB70A1A00CA709E /* ZKBaseModel.m in Sources */,
