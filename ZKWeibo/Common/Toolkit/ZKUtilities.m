@@ -35,6 +35,15 @@ static NSDateFormatter *commentDateFormatter;
     return [longDateFormatter dateFromString:string];
 }
 
++ (NSString *)stringDateForCommentDate:(NSDate *)date{
+    if (!longDateFormatter) {
+        longDateFormatter = [NSDateFormatter new];
+        longDateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+        longDateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"Asia/Beijing"];
+    }
+    
+    return [longDateFormatter stringFromDate:date];
+}
 #pragma mark - String / 字符串
 
 + (NSString *)stringDateFormatWithddMMMyyyyEEEByNormalDateString:(NSString *)normalDateString {
@@ -119,5 +128,12 @@ static NSDateFormatter *commentDateFormatter;
     return rect;
 }
 
++ (NSString *)stringSourceWithA:(NSString *)str{
+
+    NSRange range=[str rangeOfString:@"</a>"];
+    DDLogDebug(@"",)
+    return [str substringToIndex:range.location];
+
+}
 
 @end

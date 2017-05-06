@@ -25,11 +25,12 @@
 + (NSString *)stringDateForMusicDetailsDateString:(NSString *)normalDateString;
 
 + (NSString *)stringDateForCommentDateString:(NSString *)normalDateString;
-
++ (NSString *)stringDateForCommentDate:(NSDate *)date;
 + (NSAttributedString *)zk_attributedStringWithText:(NSString *)text lineSpacing:(CGFloat)lineSpacing font:(UIFont *)font textColor:(UIColor *)textColor;
 
 + (NSAttributedString *)zk_attributedStringWithText:(NSString *)text lineSpacing:(CGFloat)lineSpacing font:(UIFont *)font textColor:(UIColor *)textColor lineBreakMode:(NSLineBreakMode)lineBreakMode;
 
 + (CGRect)zk_rectWithAttributedString:(NSAttributedString *)attributedString size:(CGSize)size;
 
++ (NSString *)stringSourceWithA:(NSString *)str;
 @end

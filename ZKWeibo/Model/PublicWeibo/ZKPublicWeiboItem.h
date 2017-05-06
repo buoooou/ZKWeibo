@@ -7,11 +7,13 @@
 //
 
 #import "ZKBaseModel.h"
-
+#import "ZKUserItem.h"
 @interface ZKPublicWeiboItem : ZKBaseModel
 
-@property (nonatomic, strong) NSString *created_time;
+@property (nonatomic, strong) NSDate *created_time;
 @property (nonatomic, strong) NSString *content;
 @property (nonatomic, strong) NSString *source;
 @property (nonatomic, strong) NSString *picture;
+//@property (nonatomic, strong) ZKUserItem *user;
+
 @end
