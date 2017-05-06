@@ -13,16 +13,11 @@ NSString *const kZKHomeViewID = @"ZKHomeViewID";
 @interface ZKPublicWeiboView ()
 
 @property (strong, nonatomic) UIScrollView *scrollView;
-@property (strong, nonatomic) UIButton *diaryButton;
-@property (strong, nonatomic) UIButton *likeButton;
-@property (strong, nonatomic) UILabel *likeNumLabel;
-@property (strong, nonatomic) UIButton *moreButton;
-@property (strong, nonatomic) UIView *contentView;
+@property (strong, nonatomic) UIImageView *contentView;
 @property (strong, nonatomic) UIImageView *coverView;
 @property (strong, nonatomic) UILabel *titleLabel;
 @property (strong, nonatomic) UILabel *dateLabel;
 @property (strong, nonatomic) UITextView *contentTextView;
-@property (strong, nonatomic) UILabel *volLabel;
 
 @property (strong, nonatomic) MASConstraint *textViewHeightConstraint;
 
@@ -79,56 +74,8 @@ NSString *const kZKHomeViewID = @"ZKHomeViewID";
         scrollView;
     });
     
-    _diaryButton = ({
-        UIButton *button = [ZKUIFactory buttonWithImageName:nil highlightImageName:nil target:self action:@selector(diaryButtonClicked)];
-        [_scrollView addSubview:button];
-        [button mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.sizeOffset(CGSizeMake(66, 44));
-            make.left.equalTo(_scrollView).offset(8);
-            make.bottom.equalTo(self).offset(-73);
-        }];
-        
-        button;
-    });
-    _moreButton = ({
-        UIButton *button = [ZKUIFactory buttonWithImageName:nil highlightImageName:nil target:self action:@selector(moreButtonClicked)];
-        [_scrollView addSubview:button];
-        [button mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.width.height.equalTo(@44);
-            make.right.equalTo(_scrollView).offset(-8);
-            make.bottom.equalTo(_diaryButton);
-        }];
-        
-        button;
-    });
-    _likeNumLabel = ({
-        UILabel *label = [UILabel new];
-        label.textColor = ZKDarkGrayTextColor;
-        label.font = FontWithSize(11);
-        [_scrollView addSubview:label];
-        [label mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.width.height.equalTo(@44);
-            make.right.equalTo(_moreButton.mas_left);
-            make.bottom.equalTo(_diaryButton);
-        }];
-        
-        label;
-    });
-    
-    _likeButton = ({
-        UIButton *button = [ZKUIFactory buttonWithImageName:nil highlightImageName:nil target:self action:@selector(likeButtonClicked)];
-        [_scrollView addSubview:button];
-        [button mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.width.height.equalTo(@44);
-            make.right.equalTo(_likeNumLabel.mas_left);
-            make.bottom.equalTo(_diaryButton);
-        }];
-        
-        button;
-    });
-    
     _contentView = ({
-        UIView *view = [UIView new];
+        UIImageView *view = [UIImageView new];
         view.backgroundColor = [UIColor whiteColor];
         view.layer.shadowColor = ZKShadowColor.CGColor;// #666666
         view.layer.shadowRadius = 2;
@@ -159,19 +106,6 @@ NSString *const kZKHomeViewID = @"ZKHomeViewID";
         
         imageView;
     });
-    _volLabel = ({
-        UILabel *label = [UILabel new];
-        label.backgroundColor = [UIColor whiteColor];
-        label.textColor = ZKLightGrayTextColor;
-        label.font = FontWithSize(11);
-        [_contentView addSubview:label];
-        [label mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(_coverView.mas_bottom).offset(10);
-            make.left.equalTo(_coverView);
-        }];
-        
-        label;
-    });
     _titleLabel = ({
         UILabel *label = [UILabel new];
         label.backgroundColor = [UIColor whiteColor];
@@ -182,7 +116,6 @@ NSString *const kZKHomeViewID = @"ZKHomeViewID";
         [_contentView addSubview:label];
         [label mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(_coverView.mas_bottom).offset(8);
-            make.left.greaterThanOrEqualTo(_volLabel.mas_right).offset(4);
             make.right.equalTo(_coverView);
         }];
         
@@ -197,7 +130,7 @@ NSString *const kZKHomeViewID = @"ZKHomeViewID";
         textView.editable = NO;
         [_contentView addSubview:textView];
         [textView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(_volLabel.mas_bottom).offset(15);
+            make.top.equalTo(_titleLabel.mas_bottom).offset(15);
             make.left.right.equalTo(_coverView);
             _textViewHeightConstraint = make.height.equalTo(@0);
         }];
@@ -223,21 +156,7 @@ NSString *const kZKHomeViewID = @"ZKHomeViewID";
 
 #pragma mark - Action
 
-- (void)diaryButtonClicked {
-    if (_clickedButton) {
-        _clickedButton(ZKActionTypeDiary);
-    }
-}
 
-- (void)likeButtonClicked {
-    if (_clickedButton) {
-        _clickedButton(ZKActionTypePraise);
-    }
-}
-
-- (void)moreButtonClicked {
-
-}
 - (void)coverTapped {
     
 }
@@ -250,16 +169,19 @@ NSString *const kZKHomeViewID = @"ZKHomeViewID";
 - (void)configureViewWithHomeItem:(ZKPublicWeiboItem *)publicWeiboItem atIndex:(NSInteger)index inViewController:(ZKBaseViewController *)parentViewController {
     self.viewIndex = index;
     self.parentViewController = parentViewController;
-    if(publicWeiboItem.picture!=nil){
-        [_coverView zk_sd_setImageWithURL:publicWeiboItem.picture placeholderImageName:@"home_cover_placeholder" cachePlachoderImage:NO];
-    }
+    [_coverView zk_sd_setImageWithURL:publicWeiboItem.picture placeholderImageName:@"home_cover_placeholder" cachePlachoderImage:NO];
     _contentTextView.attributedText = [ZKUtilities zk_attributedStringWithText:publicWeiboItem.content lineSpacing:ZKLineSpacing font:_contentTextView.font textColor:_contentTextView.textColor];
     
     _textViewHeightConstraint.equalTo(@(ceilf([ZKUtilities zk_rectWithAttributedString:_contentTextView.attributedText size:CGSizeMake((SCREEN_WIDTH - 24 - 12), CGFLOAT_MAX)].size.height) + 50));
 
     _scrollView.contentOffset = CGPointZero;
-    
-    
+    _titleLabel.text = [ZKUtilities stringSourceWithA:publicWeiboItem.source];
+    _dateLabel.text = [ZKUtilities stringDateForCommentDate:publicWeiboItem.created_time];
+
+//    [_contentView zk_sd_setImageWithURL:publicWeiboItem.picture placeholderImageName:@"home_cover_placeholder" cachePlachoderImage:NO];
+
+
+
 }
 
 @end
