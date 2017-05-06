@@ -128,12 +128,14 @@ static NSDateFormatter *commentDateFormatter;
     return rect;
 }
 
-+ (NSString *)stringSourceWithA:(NSString *)str{
++ (NSString *)stringSourceWithA:(NSString *)source{
 
-    NSRange range=[str rangeOfString:@"</a>"];
-    DDLogDebug(@"",)
-    return [str substringToIndex:range.location];
-
+    NSRange range = [source rangeOfString:@">"];
+    source = [source substringFromIndex:range.location + range.length];
+    range = [source rangeOfString:@"<"];
+    source = [source substringToIndex:range.location];
+    source = [NSString stringWithFormat:@"来自:%@",source];
+    return source;
 }
 
 @end
