@@ -30,8 +30,8 @@
 
 #define ZKCacheFilesFolderName                 @"CacheFiles"
 // 首页图文列表
-#define ZKCacheHomeItemFileName                @"ZKCacheHomeItem"
-#define ZKCacheHomeItemFilePath                [NSString stringWithFormat:@"%@/%@/%@", DocumentsDirectory, ZKCacheFilesFolderName, ZKCacheHomeItemFileName]
+#define ZKCachePublicWeiboItemFileName                @"ZKCachePublicWeiboItemFileName"
+#define ZKCachePublicWeiboItemFilePath                [NSString stringWithFormat:@"%@/%@/%@", DocumentsDirectory, ZKCacheFilesFolderName, ZKCachePublicWeiboItemFileName]
 
 #pragma mark - NSUserDefault
 

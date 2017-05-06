@@ -10,20 +10,9 @@
 
 @implementation ZKPublicWeiboItem
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
-    return @{@"contentId" : @"hpcontent_id",
-             @"content" : @"hp_content",
-             @"title" : @"hp_title",
-             @"imageURL" : @"hp_img_url",
-             @"imageOriginalURL" : @"hp_img_original_url",
-             @"authorId" : @"author_id",
-             @"authorName" : @"hp_author",
-             @"iPadURL" : @"ipad_url",
-             @"makeTime" : @"hp_makettime",
-             @"lastUpdateDate" : @"last_update_date",
-             @"webURL" : @"web_url",
-             @"wbImageURL" : @"wb_img_url",
-             @"praiseNum" : @"praisenum",
-             @"shareNum" : @"sharenum",
-             @"commentNum" : @"commentnum"};
+    return @{@"created_time" : @"created_at",
+             @"content" : @"text",
+             @"source" : @"source"};
+
 }
 @end

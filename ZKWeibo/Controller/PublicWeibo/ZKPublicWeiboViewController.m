@@ -16,10 +16,6 @@
     AAPullToRefresh *pullToRefreshRight;
 }
 @property (strong, nonatomic) GMCPagingScrollView *pagingScrollView;
-@property (strong, nonatomic) UIButton *diaryButton;
-@property (strong, nonatomic) UIButton *likeButton;
-@property (strong, nonatomic) UILabel *likeNumLabel;
-//@property (strong, nonatomic) UIButton *moreButton,
 
 @property (strong, nonatomic) NSArray *dataSource;
 @end
@@ -63,7 +59,7 @@
 
 #pragma mark - Private Method
 -(void) initDatas{
-
+    
 }
 
 -(void) setupViews{
@@ -102,48 +98,10 @@
         pagingScrollView;
     });
     
-    _diaryButton = ({
-        UIButton *button = [ZKUIFactory buttonWithImageName:@"diary_normal" highlightImageName:nil target:self action:@selector(diaryButtonClicked)];
-        [_pagingScrollView insertSubview:button atIndex:0];
-        [button mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.sizeOffset(CGSizeMake(66, 44));
-            make.left.equalTo(_pagingScrollView).offset(8);
-            make.bottom.equalTo(_pagingScrollView).offset(-73);
-        }];
-        
-        button;
-    });
-
-    _likeNumLabel = ({
-        UILabel *label = [UILabel new];
-        label.textColor = ZKDarkGrayTextColor;
-        label.font = FontWithSize(11);
-        [_pagingScrollView insertSubview:label atIndex:2];
-        [label mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.width.height.equalTo(@44);
-           // make.right.equalTo(_moreButton.mas_left);
-            make.bottom.equalTo(_diaryButton);
-        }];
-        
-        label;
-    });
-    
-    _likeButton = ({
-        UIButton *button = [ZKUIFactory buttonWithImageName:@"like_normal" selectedImageName:@"like_selected" target:self action:@selector(likeButtonClicked)];
-        [_pagingScrollView insertSubview:button atIndex:3];
-        [button mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.width.height.equalTo(@44);
-            make.right.equalTo(_likeNumLabel.mas_left);
-            make.bottom.equalTo(_diaryButton);
-        }];
-        
-        button;
-    });
-    
 }
 
 - (void)loadCache {
-    id cacheItems = [NSKeyedUnarchiver unarchiveObjectWithFile:ZKCacheHomeItemFilePath];
+    id cacheItems = [NSKeyedUnarchiver unarchiveObjectWithFile:ZKCachePublicWeiboItemFilePath];
     if (cacheItems) {
         self.dataSource = cacheItems;
     }
@@ -154,9 +112,6 @@
     return _dataSource[index];
 }
 
-- (void)updateLikeNumLabelTextWithItemIndex:(NSInteger)index {
-    _likeNumLabel.text = [@([self homeItemAtIndex:index].praiseNum) stringValue];
-}
 #pragma mark - Setter
 
 - (void)setDataSource:(NSArray *)dataSource {
@@ -165,9 +120,6 @@
     [_pagingScrollView reloadData];
     // 防止加载出来前用户滑动而跳转到了最后一个
     [_pagingScrollView setCurrentPageIndex:0];
-    if (dataSource.count > 0) {
-        [self updateLikeNumLabelTextWithItemIndex:0];
-    }
 }
 
 #pragma mark - Action
@@ -182,10 +134,10 @@
 - (void)showPreviousList {
     // 原因同上
     [_pagingScrollView setCurrentPageIndex:(_dataSource.count - 1) reloadData:NO];
-  
+    
 }
 - (void)diaryButtonClicked {
-   // [self presentLoginOptsViewController];
+    // [self presentLoginOptsViewController];
 }
 
 - (void)likeButtonClicked {
@@ -193,34 +145,33 @@
 }
 
 - (void)moreButtonClicked {
-//    [self.view mlb_showPopMenuViewWithMenuSelectedBlock:^(MLBPopMenuType menuType) {
-//        DDLogDebug(@"menuType = %ld"; menuType);
-//    }];
+    //    [self.view mlb_showPopMenuViewWithMenuSelectedBlock:^(MLBPopMenuType menuType) {
+    //        DDLogDebug(@"menuType = %ld"; menuType);
+    //    }];
 }
 #pragma mark - Network Request
 
 - (void)requestHomeMore {
     __weak typeof(self) weakSelf = self;
     NSString * accessToken=[UserDefaults objectForKey:ZKWeiboAccessToken];
-    NSDictionary *para=@{@"access_token":accessToken};
+    NSDictionary *para=@{@"access_token":accessToken,@"count":@"20"};
     
     [ZKHTTPRequester requestHomeMoreWithParam:para Success:^(id responseObject) {
         __strong typeof(weakSelf) strongSelf = weakSelf;
         if (!strongSelf) {
             return;
         }
-        DDLogDebug(@"热门 %@",responseObject);
-        if ([responseObject[@"res"] integerValue] == 0) {
-            NSError *error;
-            NSArray *items = [MTLJSONAdapter modelsOfClass:[ZKPublicWeiboItem class] fromJSONArray:responseObject[@"data"] error:&error];
-            if (!error) {
-                strongSelf.dataSource = items;
-                
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    [NSKeyedArchiver archiveRootObject:strongSelf.dataSource toFile:ZKCacheHomeItemFilePath];
-                });
-            }
+
+        NSError *error;
+        NSArray *items = [MTLJSONAdapter modelsOfClass:[ZKPublicWeiboItem class] fromJSONArray:responseObject[@"statuses"] error:&error];
+        if (!error) {
+            strongSelf.dataSource = items;
+            
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                [NSKeyedArchiver archiveRootObject:strongSelf.dataSource toFile:ZKCachePublicWeiboItemFilePath];
+            });
         }
+        
     } fail:^(NSError *error) {
         __strong typeof(weakSelf) strongSelf = weakSelf;
         if (!strongSelf) {
@@ -251,7 +202,7 @@
 }
 
 - (void)pagingScrollView:(GMCPagingScrollView *)pagingScrollView didScrollToPageAtIndex:(NSUInteger)index {
-    [self updateLikeNumLabelTextWithItemIndex:index];
+    DDLogDebug(@" %lu ",(unsigned long)index);
 }
 
 @end
