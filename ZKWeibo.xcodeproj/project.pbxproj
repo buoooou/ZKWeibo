@@ -24,21 +24,21 @@
 		7E4F66A81EB6162E003F0B4A /* ZKBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4F66A71EB6162E003F0B4A /* ZKBaseViewController.m */; };
 		7E4F66AD1EB616EF003F0B4A /* ZKTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4F66AC1EB616EF003F0B4A /* ZKTabBarController.m */; };
 		7E4F66B01EB61710003F0B4A /* ZKIntroduceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4F66AF1EB61710003F0B4A /* ZKIntroduceViewController.m */; };
-		7E6A0F681EB6DF9300CA709E /* ZKHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6A0F671EB6DF9300CA709E /* ZKHomeViewController.m */; };
+		7E6A0F681EB6DF9300CA709E /* ZKPublicWeiboViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6A0F671EB6DF9300CA709E /* ZKPublicWeiboViewController.m */; };
 		7E6A0F6E1EB6E15000CA709E /* tab_home_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E6A0F6A1EB6E15000CA709E /* tab_home_normal.png */; };
 		7E6A0F6F1EB6E15000CA709E /* tab_home_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E6A0F6B1EB6E15000CA709E /* tab_home_normal@2x.png */; };
 		7E6A0F701EB6E15000CA709E /* tab_home_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E6A0F6C1EB6E15000CA709E /* tab_home_selected.png */; };
 		7E6A0F711EB6E15000CA709E /* tab_home_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E6A0F6D1EB6E15000CA709E /* tab_home_selected@2x.png */; };
 		7E6A0F761EB7049400CA709E /* AAPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6A0F751EB7049400CA709E /* AAPullToRefresh.m */; };
-		7E6A0F7B1EB7078900CA709E /* ZKHomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6A0F7A1EB7078900CA709E /* ZKHomeView.m */; };
 		7E6A0F7E1EB7079E00CA709E /* ZKBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6A0F7D1EB7079E00CA709E /* ZKBaseView.m */; };
 		7E6A0F831EB70A1A00CA709E /* ZKBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6A0F821EB70A1A00CA709E /* ZKBaseModel.m */; };
-		7E6A0F861EB70A6200CA709E /* ZKHomeItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6A0F851EB70A6200CA709E /* ZKHomeItem.m */; };
 		7E6A0F891EB70D2F00CA709E /* ZKUIFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6A0F881EB70D2F00CA709E /* ZKUIFactory.m */; };
 		7E6A0F901EB7111300CA709E /* UIImageView+ZKSDImageLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6A0F8F1EB7111300CA709E /* UIImageView+ZKSDImageLoader.m */; };
 		7E6A0F931EB711CD00CA709E /* NSString+ZKUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6A0F921EB711CD00CA709E /* NSString+ZKUtilities.m */; };
 		7E6A0F971EB717F200CA709E /* ZKHTTPRequester.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6A0F961EB717F200CA709E /* ZKHTTPRequester.m */; };
 		7E9E074A1EBDBA9F0026F7EF /* ZKAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E9E07491EBDBA9F0026F7EF /* ZKAuthViewController.m */; };
+		7E9E074D1EBDBB100026F7EF /* ZKPublicWeiboItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E9E074C1EBDBB100026F7EF /* ZKPublicWeiboItem.m */; };
+		7E9E07501EBDBC200026F7EF /* ZKPublicWeiboView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E9E074F1EBDBC200026F7EF /* ZKPublicWeiboView.m */; };
 		7EA558861EBCC34800D1F015 /* ZKAuthRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA558851EBCC34800D1F015 /* ZKAuthRuntime.m */; };
 		937A238C6D75197495BC665F /* libPods-ZKWeibo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CF0B8610F7F7645C98D869CC /* libPods-ZKWeibo.a */; };
 		E7D9D995E1A46D2778E314C8 /* libPods-ZKWeiboTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4AC8B99050AC6B86C825FAA /* libPods-ZKWeiboTests.a */; };
@@ -99,22 +99,18 @@
 		7E4F66AC1EB616EF003F0B4A /* ZKTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKTabBarController.m; path = Controller/Root/ZKTabBarController.m; sourceTree = "<group>"; };
 		7E4F66AE1EB61710003F0B4A /* ZKIntroduceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKIntroduceViewController.h; path = Controller/Introduce/ZKIntroduceViewController.h; sourceTree = "<group>"; };
 		7E4F66AF1EB61710003F0B4A /* ZKIntroduceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKIntroduceViewController.m; path = Controller/Introduce/ZKIntroduceViewController.m; sourceTree = "<group>"; };
-		7E6A0F661EB6DF9300CA709E /* ZKHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKHomeViewController.h; path = Controller/Home/ZKHomeViewController.h; sourceTree = "<group>"; };
-		7E6A0F671EB6DF9300CA709E /* ZKHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKHomeViewController.m; path = Controller/Home/ZKHomeViewController.m; sourceTree = "<group>"; };
+		7E6A0F661EB6DF9300CA709E /* ZKPublicWeiboViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKPublicWeiboViewController.h; path = Controller/Home/ZKPublicWeiboViewController.h; sourceTree = "<group>"; };
+		7E6A0F671EB6DF9300CA709E /* ZKPublicWeiboViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKPublicWeiboViewController.m; path = Controller/Home/ZKPublicWeiboViewController.m; sourceTree = "<group>"; };
 		7E6A0F6A1EB6E15000CA709E /* tab_home_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab_home_normal.png; sourceTree = "<group>"; };
 		7E6A0F6B1EB6E15000CA709E /* tab_home_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_home_normal@2x.png"; sourceTree = "<group>"; };
 		7E6A0F6C1EB6E15000CA709E /* tab_home_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab_home_selected.png; sourceTree = "<group>"; };
 		7E6A0F6D1EB6E15000CA709E /* tab_home_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_home_selected@2x.png"; sourceTree = "<group>"; };
 		7E6A0F741EB7049400CA709E /* AAPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAPullToRefresh.h; sourceTree = "<group>"; };
 		7E6A0F751EB7049400CA709E /* AAPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAPullToRefresh.m; sourceTree = "<group>"; };
-		7E6A0F791EB7078900CA709E /* ZKHomeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKHomeView.h; path = View/Home/ZKHomeView.h; sourceTree = "<group>"; };
-		7E6A0F7A1EB7078900CA709E /* ZKHomeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKHomeView.m; path = View/Home/ZKHomeView.m; sourceTree = "<group>"; };
 		7E6A0F7C1EB7079E00CA709E /* ZKBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKBaseView.h; path = View/ZKBaseView.h; sourceTree = "<group>"; };
 		7E6A0F7D1EB7079E00CA709E /* ZKBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKBaseView.m; path = View/ZKBaseView.m; sourceTree = "<group>"; };
 		7E6A0F811EB70A1A00CA709E /* ZKBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKBaseModel.h; path = Model/ZKBaseModel.h; sourceTree = "<group>"; };
 		7E6A0F821EB70A1A00CA709E /* ZKBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKBaseModel.m; path = Model/ZKBaseModel.m; sourceTree = "<group>"; };
-		7E6A0F841EB70A6200CA709E /* ZKHomeItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKHomeItem.h; path = Model/Home/ZKHomeItem.h; sourceTree = "<group>"; };
-		7E6A0F851EB70A6200CA709E /* ZKHomeItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKHomeItem.m; path = Model/Home/ZKHomeItem.m; sourceTree = "<group>"; };
 		7E6A0F871EB70D2F00CA709E /* ZKUIFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKUIFactory.h; path = Common/Toolkit/ZKUIFactory.h; sourceTree = "<group>"; };
 		7E6A0F881EB70D2F00CA709E /* ZKUIFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKUIFactory.m; path = Common/Toolkit/ZKUIFactory.m; sourceTree = "<group>"; };
 		7E6A0F8E1EB7111300CA709E /* UIImageView+ZKSDImageLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImageView+ZKSDImageLoader.h"; path = "Common/Catagory/UIImageView+ZKSDImageLoader.h"; sourceTree = "<group>"; };
@@ -125,6 +121,10 @@
 		7E6A0F961EB717F200CA709E /* ZKHTTPRequester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKHTTPRequester.m; path = Common/Network/ZKHTTPRequester.m; sourceTree = "<group>"; };
 		7E9E07481EBDBA9F0026F7EF /* ZKAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKAuthViewController.h; path = Controller/Auth/ZKAuthViewController.h; sourceTree = "<group>"; };
 		7E9E07491EBDBA9F0026F7EF /* ZKAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKAuthViewController.m; path = Controller/Auth/ZKAuthViewController.m; sourceTree = "<group>"; };
+		7E9E074B1EBDBB100026F7EF /* ZKPublicWeiboItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKPublicWeiboItem.h; path = Model/PublicWeibo/ZKPublicWeiboItem.h; sourceTree = "<group>"; };
+		7E9E074C1EBDBB100026F7EF /* ZKPublicWeiboItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKPublicWeiboItem.m; path = Model/PublicWeibo/ZKPublicWeiboItem.m; sourceTree = "<group>"; };
+		7E9E074E1EBDBC200026F7EF /* ZKPublicWeiboView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKPublicWeiboView.h; path = View/PublicWeibo/ZKPublicWeiboView.h; sourceTree = "<group>"; };
+		7E9E074F1EBDBC200026F7EF /* ZKPublicWeiboView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKPublicWeiboView.m; path = View/PublicWeibo/ZKPublicWeiboView.m; sourceTree = "<group>"; };
 		7EA558841EBCC34800D1F015 /* ZKAuthRuntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKAuthRuntime.h; path = Common/Runtime/ZKAuthRuntime.h; sourceTree = "<group>"; };
 		7EA558851EBCC34800D1F015 /* ZKAuthRuntime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKAuthRuntime.m; path = Common/Runtime/ZKAuthRuntime.m; sourceTree = "<group>"; };
 		934253252A9FD7ECE719CAB8 /* libPods-ZKWeiboUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZKWeiboUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -185,13 +185,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		7E3F14201EB630FD00DABE64 /* Home */ = {
+		7E3F14201EB630FD00DABE64 /* PublicWeibo */ = {
 			isa = PBXGroup;
 			children = (
-				7E6A0F661EB6DF9300CA709E /* ZKHomeViewController.h */,
-				7E6A0F671EB6DF9300CA709E /* ZKHomeViewController.m */,
+				7E6A0F661EB6DF9300CA709E /* ZKPublicWeiboViewController.h */,
+				7E6A0F671EB6DF9300CA709E /* ZKPublicWeiboViewController.m */,
 			);
-			name = Home;
+			name = PublicWeibo;
 			sourceTree = "<group>";
 		};
 		7E3F14231EB6400700DABE64 /* Search */ = {
@@ -355,7 +355,7 @@
 				7EA558771EBB662600D1F015 /* Auth */,
 				7E3F14271EB640C900DABE64 /* User */,
 				7E3F14231EB6400700DABE64 /* Search */,
-				7E3F14201EB630FD00DABE64 /* Home */,
+				7E3F14201EB630FD00DABE64 /* PublicWeibo */,
 				7E4F66AA1EB616B8003F0B4A /* Root */,
 				7E4F66A91EB616A0003F0B4A /* Introduce */,
 				7E4F66A51EB61608003F0B4A /* Base */,
@@ -421,20 +421,20 @@
 		7E6A0F771EB7075700CA709E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				7E6A0F781EB7076100CA709E /* Home */,
+				7E6A0F781EB7076100CA709E /* PublicWeibo */,
 				7E6A0F7C1EB7079E00CA709E /* ZKBaseView.h */,
 				7E6A0F7D1EB7079E00CA709E /* ZKBaseView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
 		};
-		7E6A0F781EB7076100CA709E /* Home */ = {
+		7E6A0F781EB7076100CA709E /* PublicWeibo */ = {
 			isa = PBXGroup;
 			children = (
-				7E6A0F791EB7078900CA709E /* ZKHomeView.h */,
-				7E6A0F7A1EB7078900CA709E /* ZKHomeView.m */,
+				7E9E074E1EBDBC200026F7EF /* ZKPublicWeiboView.h */,
+				7E9E074F1EBDBC200026F7EF /* ZKPublicWeiboView.m */,
 			);
-			name = Home;
+			name = PublicWeibo;
 			sourceTree = "<group>";
 		};
 		7E6A0F7F1EB7081A00CA709E /* Model */ = {
@@ -442,18 +442,18 @@
 			children = (
 				7E6A0F811EB70A1A00CA709E /* ZKBaseModel.h */,
 				7E6A0F821EB70A1A00CA709E /* ZKBaseModel.m */,
-				7E6A0F801EB7082300CA709E /* Home */,
+				7E6A0F801EB7082300CA709E /* PublicWeibo */,
 			);
 			name = Model;
 			sourceTree = "<group>";
 		};
-		7E6A0F801EB7082300CA709E /* Home */ = {
+		7E6A0F801EB7082300CA709E /* PublicWeibo */ = {
 			isa = PBXGroup;
 			children = (
-				7E6A0F841EB70A6200CA709E /* ZKHomeItem.h */,
-				7E6A0F851EB70A6200CA709E /* ZKHomeItem.m */,
+				7E9E074B1EBDBB100026F7EF /* ZKPublicWeiboItem.h */,
+				7E9E074C1EBDBB100026F7EF /* ZKPublicWeiboItem.m */,
 			);
-			name = Home;
+			name = PublicWeibo;
 			sourceTree = "<group>";
 		};
 		7E6A0F8A1EB70F8B00CA709E /* Category */ = {
@@ -785,17 +785,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E9E074D1EBDBB100026F7EF /* ZKPublicWeiboItem.m in Sources */,
 				7E6A0F891EB70D2F00CA709E /* ZKUIFactory.m in Sources */,
 				7E6A0F931EB711CD00CA709E /* NSString+ZKUtilities.m in Sources */,
-				7E6A0F861EB70A6200CA709E /* ZKHomeItem.m in Sources */,
 				7E9E074A1EBDBA9F0026F7EF /* ZKAuthViewController.m in Sources */,
-				7E6A0F7B1EB7078900CA709E /* ZKHomeView.m in Sources */,
 				7E4F66B01EB61710003F0B4A /* ZKIntroduceViewController.m in Sources */,
 				7EA558861EBCC34800D1F015 /* ZKAuthRuntime.m in Sources */,
-				7E6A0F681EB6DF9300CA709E /* ZKHomeViewController.m in Sources */,
+				7E6A0F681EB6DF9300CA709E /* ZKPublicWeiboViewController.m in Sources */,
 				7E3F142A1EB640E000DABE64 /* ZKUserHomeViewController.m in Sources */,
 				7E4F66691EB60D40003F0B4A /* AppDelegate.m in Sources */,
 				7E6A0F831EB70A1A00CA709E /* ZKBaseModel.m in Sources */,
+				7E9E07501EBDBC200026F7EF /* ZKPublicWeiboView.m in Sources */,
 				7E4F66A01EB6121A003F0B4A /* ZKUtilities.m in Sources */,
 				7E6A0F7E1EB7079E00CA709E /* ZKBaseView.m in Sources */,
 				7E4F66AD1EB616EF003F0B4A /* ZKTabBarController.m in Sources */,

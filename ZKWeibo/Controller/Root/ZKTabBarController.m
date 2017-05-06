@@ -7,7 +7,7 @@
 //
 
 #import "ZKTabBarController.h"
-#import "ZKHomeViewController.h"
+#import "ZKPublicWeiboViewController.h"
 
 @interface ZKTabBarController ()
 
@@ -26,11 +26,11 @@
     self = [super init];
     
     if (self) {
-        ZKHomeViewController *homeViewController = [[ZKHomeViewController alloc] init];
-        UINavigationController *homeNavigationController = [[UINavigationController alloc] initWithRootViewController:homeViewController];
-        homeNavigationController.title = ZKHomeTitle;
+        ZKPublicWeiboViewController *publicWeiboViewController = [[ZKPublicWeiboViewController alloc] init];
+        UINavigationController *publicWeiboNavigationController = [[UINavigationController alloc] initWithRootViewController:publicWeiboViewController];
+        publicWeiboNavigationController.title = ZKHomeTitle;
         
-        [self setViewControllers:@[homeNavigationController]];
+        [self setViewControllers:@[publicWeiboNavigationController]];
         
         [self setupTabBar];
         

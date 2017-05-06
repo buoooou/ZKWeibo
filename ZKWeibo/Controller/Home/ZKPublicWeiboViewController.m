@@ -6,12 +6,12 @@
 //  Copyright © 2017年 张阔. All rights reserved.
 //
 
-#import "ZKHomeViewController.h"
-#import "ZKHomeView.h"
+#import "ZKPublicWeiboViewController.h"
+#import "ZKPublicWeiboView.h"
 #import "ZKHTTPRequester.h"
-#import "ZKHomeItem.h"
+#import "ZKPublicWeiboItem.h"
 
-@interface ZKHomeViewController ()<GMCPagingScrollViewDataSource,GMCPagingScrollViewDelegate>{
+@interface ZKPublicWeiboViewController ()<GMCPagingScrollViewDataSource,GMCPagingScrollViewDelegate>{
     AAPullToRefresh *pullToRefreshLeft;
     AAPullToRefresh *pullToRefreshRight;
 }
@@ -24,7 +24,7 @@
 @property (strong, nonatomic) NSArray *dataSource;
 @end
 
-@implementation ZKHomeViewController
+@implementation ZKPublicWeiboViewController
 
 #pragma view lifecycle
 - (void)viewDidLoad {
@@ -71,7 +71,7 @@
     _pagingScrollView = ({
         GMCPagingScrollView *pagingScrollView = [GMCPagingScrollView new];
         pagingScrollView.backgroundColor = ZKViewControllerBGColor;
-        [pagingScrollView registerClass:[ZKHomeView class] forReuseIdentifier:kZKHomeViewID];
+        [pagingScrollView registerClass:[ZKPublicWeiboView class] forReuseIdentifier:kZKHomeViewID];
         pagingScrollView.dataSource = self;
         pagingScrollView.delegate = self;
         pagingScrollView.pageInsets = UIEdgeInsetsZero;
@@ -150,7 +150,7 @@
 }
 #pragma mark - Private Method
 
-- (ZKHomeItem *)homeItemAtIndex:(NSInteger)index {
+- (ZKPublicWeiboItem *)homeItemAtIndex:(NSInteger)index {
     return _dataSource[index];
 }
 
@@ -212,7 +212,7 @@
         DDLogDebug(@"热门 %@",responseObject);
         if ([responseObject[@"res"] integerValue] == 0) {
             NSError *error;
-            NSArray *items = [MTLJSONAdapter modelsOfClass:[ZKHomeItem class] fromJSONArray:responseObject[@"data"] error:&error];
+            NSArray *items = [MTLJSONAdapter modelsOfClass:[ZKPublicWeiboItem class] fromJSONArray:responseObject[@"data"] error:&error];
             if (!error) {
                 strongSelf.dataSource = items;
                 
@@ -235,7 +235,7 @@
 }
 
 - (UIView *)pagingScrollView:(GMCPagingScrollView *)pagingScrollView pageForIndex:(NSUInteger)index {
-    ZKHomeView *view = [pagingScrollView dequeueReusablePageWithIdentifier:kZKHomeViewID];
+    ZKPublicWeiboView *view = [pagingScrollView dequeueReusablePageWithIdentifier:kZKHomeViewID];
     [view configureViewWithHomeItem:[self homeItemAtIndex:index] atIndex:index inViewController:self];
     
     return view;

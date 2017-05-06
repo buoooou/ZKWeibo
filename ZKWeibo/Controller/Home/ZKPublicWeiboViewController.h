@@ -8,6 +8,6 @@
 
 #import "ZKBaseViewController.h"
 
-@interface ZKHomeViewController : ZKBaseViewController
+@interface ZKPublicWeiboViewController : ZKBaseViewController
 
 @end
