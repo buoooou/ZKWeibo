@@ -17,7 +17,7 @@
 }
 @property (strong, nonatomic) GMCPagingScrollView *pagingScrollView;
 
-@property (strong, nonatomic) NSArray *dataSource;
+@property (strong, nonatomic) NSMutableArray *dataSource;
 @end
 
 @implementation ZKPublicWeiboViewController
@@ -34,7 +34,7 @@
     [self initDatas];
     [self setupViews];
     [self loadCache];
-    [self requestHomeMore];
+    [self refreshNewPublicWeibo];
 }
 
 #pragma lifecycle
@@ -59,7 +59,7 @@
 
 #pragma mark - Private Method
 -(void) initDatas{
-    
+    self.dataSource=[[NSMutableArray alloc]initWithCapacity:20];
 }
 
 -(void) setupViews{
@@ -73,7 +73,7 @@
         pagingScrollView.pageInsets = UIEdgeInsetsZero;
         pagingScrollView.interpageSpacing = 0;
         pullToRefreshLeft = [pagingScrollView.scrollView addPullToRefreshPosition:AAPullToRefreshPositionLeft actionHandler:^(AAPullToRefresh *v) {
-            [weakSelf refreshHomeMore];
+            [weakSelf refreshNewPublicWeibo];
             [v performSelector:@selector(stopIndicatorAnimation) withObject:nil afterDelay:1];
         }];
         pullToRefreshLeft.threshold = 100;
@@ -82,7 +82,7 @@
         pullToRefreshLeft.imageIcon = [UIImage new];
         
         pullToRefreshRight = [pagingScrollView.scrollView addPullToRefreshPosition:AAPullToRefreshPositionRight actionHandler:^(AAPullToRefresh *v) {
-            [weakSelf showPreviousList];
+            [weakSelf refreshPublicWeiboMore];
             [v performSelector:@selector(stopIndicatorAnimation) withObject:nil afterDelay:1];
         }];
         pullToRefreshRight.borderColor = ZKAppThemeColor;
@@ -114,44 +114,59 @@
 
 #pragma mark - Setter
 
-- (void)setDataSource:(NSArray *)dataSource {
-    _dataSource = dataSource;
+- (void)appendDataSource:(NSArray *)dataSource {
+    [_dataSource addObjectsFromArray:dataSource];
     _pagingScrollView.hidden = NO;
     [_pagingScrollView reloadData];
-    // 防止加载出来前用户滑动而跳转到了最后一个
-    [_pagingScrollView setCurrentPageIndex:0];
 }
 
 #pragma mark - Action
 
-- (void)refreshHomeMore {
+- (void)refreshNewPublicWeibo {
     // 很奇怪，不写这行代码的话，_pagingScrollView 里面的 scrollview 的 contentOffset.x 会变成和释放刷新时 contentOffset.x 的绝对值差不多，导致第一个 item 看起来像是左移了，论脑洞的重要性
     [_pagingScrollView setCurrentPageIndex:0 reloadData:NO];
     // 刷新
-    [self requestHomeMore];
+    [self requestNewPublicWeibo];
 }
 
-- (void)showPreviousList {
+- (void)refreshPublicWeiboMore {
     // 原因同上
+    [self requestPublicWeiboMore];
     [_pagingScrollView setCurrentPageIndex:(_dataSource.count - 1) reloadData:NO];
-    
-}
-- (void)diaryButtonClicked {
-    // [self presentLoginOptsViewController];
 }
 
-- (void)likeButtonClicked {
-    
-}
-
-- (void)moreButtonClicked {
-    //    [self.view mlb_showPopMenuViewWithMenuSelectedBlock:^(MLBPopMenuType menuType) {
-    //        DDLogDebug(@"menuType = %ld"; menuType);
-    //    }];
-}
 #pragma mark - Network Request
-
-- (void)requestHomeMore {
+- (void)requestNewPublicWeibo {
+    __weak typeof(self) weakSelf = self;
+    NSString * accessToken=[UserDefaults objectForKey:ZKWeiboAccessToken];
+    NSDictionary *para=@{@"access_token":accessToken,@"count":@"20"};
+    
+    [ZKHTTPRequester requestHomeMoreWithParam:para Success:^(id responseObject) {
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        if (!strongSelf) {
+            return;
+        }
+        
+        NSError *error;
+        NSArray *items = [MTLJSONAdapter modelsOfClass:[ZKPublicWeiboItem class] fromJSONArray:responseObject[@"statuses"] error:&error];
+        if (!error) {
+            [self.dataSource removeAllObjects];
+            [self appendDataSource:items];
+            // 防止加载出来前用户滑动而跳转到了最后一个
+            [_pagingScrollView setCurrentPageIndex:0];
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                [NSKeyedArchiver archiveRootObject:strongSelf.dataSource toFile:ZKCachePublicWeiboItemFilePath];
+            });
+        }
+        
+    } fail:^(NSError *error) {
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        if (!strongSelf) {
+            return;
+        }
+    }];
+}
+- (void)requestPublicWeiboMore {
     __weak typeof(self) weakSelf = self;
     NSString * accessToken=[UserDefaults objectForKey:ZKWeiboAccessToken];
     NSDictionary *para=@{@"access_token":accessToken,@"count":@"20"};
@@ -165,8 +180,9 @@
         NSError *error;
         NSArray *items = [MTLJSONAdapter modelsOfClass:[ZKPublicWeiboItem class] fromJSONArray:responseObject[@"statuses"] error:&error];
         if (!error) {
-            strongSelf.dataSource = items;
-            
+            // 防止加载出来前用户滑动而跳转到了最后一个
+            [_pagingScrollView setCurrentPageIndex:self.dataSource.count];
+            [self appendDataSource:items];
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 [NSKeyedArchiver archiveRootObject:strongSelf.dataSource toFile:ZKCachePublicWeiboItemFilePath];
             });

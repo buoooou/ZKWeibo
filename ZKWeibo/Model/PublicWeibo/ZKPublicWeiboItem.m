@@ -12,7 +12,8 @@
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     return @{@"created_time" : @"created_at",
              @"content" : @"text",
-             @"source" : @"source"};
+             @"source" : @"source",
+             @"picture" : @"original_pic",};
 
 }
 @end

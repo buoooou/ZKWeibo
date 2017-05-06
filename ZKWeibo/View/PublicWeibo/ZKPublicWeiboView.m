@@ -250,23 +250,15 @@ NSString *const kZKHomeViewID = @"ZKHomeViewID";
 - (void)configureViewWithHomeItem:(ZKPublicWeiboItem *)publicWeiboItem atIndex:(NSInteger)index inViewController:(ZKBaseViewController *)parentViewController {
     self.viewIndex = index;
     self.parentViewController = parentViewController;
-    [_coverView zk_sd_setImageWithURL:@"" placeholderImageName:@"home_cover_placeholder" cachePlachoderImage:NO];
-    
+    if(publicWeiboItem.picture!=nil){
+        [_coverView zk_sd_setImageWithURL:publicWeiboItem.picture placeholderImageName:@"home_cover_placeholder" cachePlachoderImage:NO];
+    }
     _contentTextView.attributedText = [ZKUtilities zk_attributedStringWithText:publicWeiboItem.content lineSpacing:ZKLineSpacing font:_contentTextView.font textColor:_contentTextView.textColor];
     
     _textViewHeightConstraint.equalTo(@(ceilf([ZKUtilities zk_rectWithAttributedString:_contentTextView.attributedText size:CGSizeMake((SCREEN_WIDTH - 24 - 12), CGFLOAT_MAX)].size.height) + 50));
 
     _scrollView.contentOffset = CGPointZero;
     
-    // 如果是-1，说明是单个视图界面，则显示按钮上的图片和点赞数
-//    if (index == -1) {
-//        [_diaryButton setImage:[UIImage imageNamed:@"diary_normal"] forState:UIControlStateNormal];
-//        [_moreButton setImage:[UIImage imageNamed:@"share_image"] forState:UIControlStateNormal];
-//        [_likeButton setImage:[UIImage imageNamed:@"like_normal"] forState:UIControlStateNormal];
-//        [_likeButton setImage:[UIImage imageNamed:@"like_selected"] forState:UIControlStateSelected];
-//        
-//        _likeNumLabel.text = [@(publicWeiboItem.praiseNum) stringValue];
-//    }
     
 }
 
