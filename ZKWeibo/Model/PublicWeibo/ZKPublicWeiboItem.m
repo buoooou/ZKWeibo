@@ -9,6 +9,19 @@
 #import "ZKPublicWeiboItem.h"
 
 @implementation ZKPublicWeiboItem
+
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+    return @{@"created_time" : @"created_at",
+             @"content" : @"text",
+             @"source" : @"source",
+             @"user" : @"user",
+             @"picture" : @"original_pic",};
+
+}
++ (NSValueTransformer *)userJSONTransformer {
+    return [MTLJSONAdapter arrayTransformerWithModelClass:[ZKUserItem class]];
+}
+
 + (NSDateFormatter *)dateFormatter {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
@@ -16,17 +29,6 @@
     //Fri Aug 28 00:00:00 +0800 2009
     return dateFormatter;
 }
-+ (NSDictionary *)JSONKeyPathsByPropertyKey {
-    return @{@"created_time" : @"created_at",
-             @"content" : @"text",
-             @"source" : @"source",
-             @"picture" : @"original_pic",
-             };
-
-}
-//+ (NSValueTransformer *)userJSONTransformer {
-//    return [MTLJSONAdapter dictionaryTransformerWithModelClass:[ZKUserItem class]];
-//}
 + (NSValueTransformer *)created_timeJSONTransformer {
     return [MTLValueTransformer transformerUsingForwardBlock:^id(NSString *dateString, BOOL *success, NSError *__autoreleasing *error) {
         return [self.dateFormatter dateFromString:dateString];

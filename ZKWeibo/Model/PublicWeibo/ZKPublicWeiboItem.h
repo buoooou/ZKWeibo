@@ -13,7 +13,7 @@
 @property (nonatomic, strong) NSDate *created_time;
 @property (nonatomic, strong) NSString *content;
 @property (nonatomic, strong) NSString *source;
-@property (nonatomic, strong) NSString *picture;
-//@property (nonatomic, strong) ZKUserItem *user;
 
+@property (nonatomic, strong) ZKUserItem *user;
+@property (nonatomic, strong) NSString *picture;
 @end

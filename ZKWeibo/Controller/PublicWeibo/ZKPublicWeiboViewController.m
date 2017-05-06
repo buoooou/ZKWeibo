@@ -139,7 +139,7 @@
 - (void)requestNewPublicWeibo {
     __weak typeof(self) weakSelf = self;
     NSString * accessToken=[UserDefaults objectForKey:ZKWeiboAccessToken];
-    NSDictionary *para=@{@"access_token":accessToken,@"count":@"20"};
+    NSDictionary *para=@{@"access_token":accessToken,@"count":@"1"};
     
     [ZKHTTPRequester requestHomeMoreWithParam:para Success:^(id responseObject) {
         __strong typeof(weakSelf) strongSelf = weakSelf;
@@ -149,6 +149,7 @@
         
         NSError *error;
         NSArray *items = [MTLJSONAdapter modelsOfClass:[ZKPublicWeiboItem class] fromJSONArray:responseObject[@"statuses"] error:&error];
+
         if (!error) {
             [self.dataSource removeAllObjects];
             [self appendDataSource:items];

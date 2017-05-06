@@ -178,10 +178,6 @@ NSString *const kZKHomeViewID = @"ZKHomeViewID";
     _titleLabel.text = [ZKUtilities stringSourceWithA:publicWeiboItem.source];
     _dateLabel.text = [ZKUtilities stringDateForCommentDate:publicWeiboItem.created_time];
 
-//    [_contentView zk_sd_setImageWithURL:publicWeiboItem.picture placeholderImageName:@"home_cover_placeholder" cachePlachoderImage:NO];
-
-
-
 }
 
 @end
