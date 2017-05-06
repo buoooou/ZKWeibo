@@ -17,6 +17,4 @@
 @property (nonatomic, assign) NSInteger *statuses;
 @property (nonatomic, assign) NSInteger *favourites;
 @property (nonatomic, strong) NSString *gender;
-@property (nonatomic, strong) NSString *createdTime;
-
 @end

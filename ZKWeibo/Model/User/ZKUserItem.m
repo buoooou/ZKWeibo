@@ -17,7 +17,6 @@
              @"statuses" : @"statuses_count",
              @"favourites" : @"favourites_count",
              @"gender" : @"gender",
-             @"createdTime" : @"created_at",
              @"avatar_hd" : @"avatar_hd"};
     
 }
