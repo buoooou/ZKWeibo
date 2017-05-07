@@ -20,6 +20,7 @@
 
 #import "NSString+ZKUtilities.h"
 #import "UIImageView+ZKSDImageLoader.h"
+#import "UIView+ZKShowHUD.h"
 
 #pragma mark - Framework
 

@@ -11,6 +11,9 @@
 
 #define ZKHomeTitle                            @"首页"
 
+#define BAD_NETWORK                             @"网络连接失败"
+#define SERVER_ERROR                            @"服务器连接失败"
+
 #pragma mark - UIColor
 
 #define ZKAppThemeColor                        [UIColor colorWithRed:142 / 255.0 green:182 / 255.0 blue:230 / 255.0 alpha:1]// #8EB6E6
@@ -25,12 +28,15 @@
 #define ZKDarkGrayTextColor                    [UIColor colorWithWhite:173 / 255.0 alpha:1]// #ADADAD
 #define ZKLightBlackTextColor                  [UIColor colorWithWhite:90 / 255.0 alpha:1]// #5A5A5A
 
+// HUD
+#define HUD_DELAY                               1.5
 #define ZKPullToRefreshBorderWidth             4
 #define ZKLineSpacing							8
 
 #define ZKCacheFilesFolderName                 @"CacheFiles"
-// 首页图文列表
-#define ZKCachePublicWeiboItemFileName                @"ZKCachePublicWeiboItemFileName"
+// 热门微博列表
+#define ZKPublicWeiboCount                     @"10"
+#define ZKCachePublicWeiboItemFileName         @"ZKCachePublicWeiboItemFileName"
 #define ZKCachePublicWeiboItemFilePath                [NSString stringWithFormat:@"%@/%@/%@", DocumentsDirectory, ZKCacheFilesFolderName, ZKCachePublicWeiboItemFileName]
 
 #pragma mark - NSUserDefault

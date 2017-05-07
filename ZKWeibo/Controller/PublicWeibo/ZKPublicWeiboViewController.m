@@ -20,7 +20,9 @@
 @property (strong, nonatomic) NSMutableArray *dataSource;
 @end
 
-@implementation ZKPublicWeiboViewController
+@implementation ZKPublicWeiboViewController{
+    NSUInteger page;
+}
 
 #pragma view lifecycle
 - (void)viewDidLoad {
@@ -60,6 +62,7 @@
 #pragma mark - Private Method
 -(void) initDatas{
     self.dataSource=[[NSMutableArray alloc]initWithCapacity:20];
+    page=1;
 }
 
 -(void) setupViews{
@@ -139,7 +142,7 @@
 - (void)requestNewPublicWeibo {
     __weak typeof(self) weakSelf = self;
     NSString * accessToken=[UserDefaults objectForKey:ZKWeiboAccessToken];
-    NSDictionary *para=@{@"access_token":accessToken,@"count":@"10"};
+    NSDictionary *para=@{@"access_token":accessToken,@"count":ZKPublicWeiboCount,@"page":@"1"};
     
     [ZKHTTPRequester requestHomeMoreWithParam:para Success:^(id responseObject) {
         __strong typeof(weakSelf) strongSelf = weakSelf;
@@ -169,8 +172,11 @@
 }
 - (void)requestPublicWeiboMore {
     __weak typeof(self) weakSelf = self;
+    //获取新热门微博
+    page++;
+    NSString * strPage=[NSString stringWithFormat:@"%ld",page];
     NSString * accessToken=[UserDefaults objectForKey:ZKWeiboAccessToken];
-    NSDictionary *para=@{@"access_token":accessToken,@"count":@"20"};
+    NSDictionary *para=@{@"access_token":accessToken,@"count":ZKPublicWeiboCount,@"page":strPage};
     
     [ZKHTTPRequester requestHomeMoreWithParam:para Success:^(id responseObject) {
         __strong typeof(weakSelf) strongSelf = weakSelf;
@@ -181,19 +187,24 @@
         NSError *error;
         NSArray *items = [MTLJSONAdapter modelsOfClass:[ZKPublicWeiboItem class] fromJSONArray:responseObject[@"statuses"] error:&error];
         if (!error) {
+            if(items.count<=0){
+                [strongSelf.view showHUDOnlyText:@"暂无新数据"];
+            }
             // 防止加载出来前用户滑动而跳转到了最后一个
             [_pagingScrollView setCurrentPageIndex:self.dataSource.count];
             [self appendDataSource:items];
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 [NSKeyedArchiver archiveRootObject:strongSelf.dataSource toFile:ZKCachePublicWeiboItemFilePath];
             });
+        }else {
+            [strongSelf.view showHUDModelTransformFailedWithError:error];
         }
-        
     } fail:^(NSError *error) {
         __strong typeof(weakSelf) strongSelf = weakSelf;
         if (!strongSelf) {
             return;
         }
+        [strongSelf.view showHUDServerError];
     }];
 }
 #pragma mark - GMCPagingScrollViewDataSource
