@@ -23,6 +23,7 @@ PODS:
   - CocoaLumberjack/Extensions (3.0.0):
     - CocoaLumberjack/Default
   - GMCPagingScrollView (1.0.3)
+  - JTSImageViewController (1.5.1)
   - Mantle (2.1.0):
     - Mantle/extobjc (= 2.1.0)
   - Mantle/extobjc (2.1.0)
@@ -35,6 +36,7 @@ DEPENDENCIES:
   - AFNetworking (~> 3.0)
   - CocoaLumberjack
   - GMCPagingScrollView
+  - JTSImageViewController
   - Mantle
   - Masonry
   - SDWebImage (~> 3.8)
@@ -43,10 +45,11 @@ SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   CocoaLumberjack: c823149bccc5519a9447aeb433be7b1212a7d6a5
   GMCPagingScrollView: 32285a8e2c0162a4709dfcb4fefb0b9896f87db2
+  JTSImageViewController: 1f8ce1cc93dab0d0af8e53badeea7528560cfec9
   Mantle: 2fa750afa478cd625a94230fbf1c13462f29395b
   Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
 
-PODFILE CHECKSUM: 573c37f8c0bb215f22a165a09bd412c3b816637f
+PODFILE CHECKSUM: 51921f299702411718c4b1b4f0ed9a64fee97173
 
 COCOAPODS: 1.2.0.beta.1
