@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		05A0FAF677A6BEF1FD42DEF7 /* libPods-ZKWeiboUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 934253252A9FD7ECE719CAB8 /* libPods-ZKWeiboUITests.a */; };
 		7E3EB31C1EBF2809008229B8 /* UIView+ZKWeibo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E3EB31B1EBF2809008229B8 /* UIView+ZKWeibo.m */; };
+		7E3EB31F1EBF33C9008229B8 /* UIView+ZKShowHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E3EB31E1EBF33C9008229B8 /* UIView+ZKShowHUD.m */; };
 		7E3F14261EB6409700DABE64 /* ZKSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E3F14251EB6409700DABE64 /* ZKSearchViewController.m */; };
 		7E3F142A1EB640E000DABE64 /* ZKUserHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E3F14291EB640E000DABE64 /* ZKUserHomeViewController.m */; };
 		7E3F14351EB6435700DABE64 /* icon_search.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E3F14331EB6435700DABE64 /* icon_search.png */; };
@@ -71,6 +72,8 @@
 		7B590432B1A7D8ED95BDCBED /* Pods-ZKWeibo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZKWeibo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZKWeibo/Pods-ZKWeibo.debug.xcconfig"; sourceTree = "<group>"; };
 		7E3EB31A1EBF2809008229B8 /* UIView+ZKWeibo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ZKWeibo.h"; sourceTree = "<group>"; };
 		7E3EB31B1EBF2809008229B8 /* UIView+ZKWeibo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ZKWeibo.m"; sourceTree = "<group>"; };
+		7E3EB31D1EBF33C9008229B8 /* UIView+ZKShowHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ZKShowHUD.h"; sourceTree = "<group>"; };
+		7E3EB31E1EBF33C9008229B8 /* UIView+ZKShowHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ZKShowHUD.m"; sourceTree = "<group>"; };
 		7E3F14211EB6331C00DABE64 /* ZKWeibo.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZKWeibo.pch; sourceTree = "<group>"; };
 		7E3F14221EB6334800DABE64 /* ZKMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKMacros.h; path = Common/Headers/ZKMacros.h; sourceTree = "<group>"; };
 		7E3F14241EB6409700DABE64 /* ZKSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKSearchViewController.h; path = Controller/Search/ZKSearchViewController.h; sourceTree = "<group>"; };
@@ -469,6 +472,8 @@
 		7E6A0F8A1EB70F8B00CA709E /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				7E3EB31D1EBF33C9008229B8 /* UIView+ZKShowHUD.h */,
+				7E3EB31E1EBF33C9008229B8 /* UIView+ZKShowHUD.m */,
 				7E3EB31A1EBF2809008229B8 /* UIView+ZKWeibo.h */,
 				7E3EB31B1EBF2809008229B8 /* UIView+ZKWeibo.m */,
 				7E6A0F911EB711CD00CA709E /* NSString+ZKUtilities.h */,
@@ -820,6 +825,7 @@
 				7E9E074D1EBDBB100026F7EF /* ZKPublicWeiboItem.m in Sources */,
 				7E6A0F891EB70D2F00CA709E /* ZKUIFactory.m in Sources */,
 				7E6A0F931EB711CD00CA709E /* NSString+ZKUtilities.m in Sources */,
+				7E3EB31F1EBF33C9008229B8 /* UIView+ZKShowHUD.m in Sources */,
 				7E9E074A1EBDBA9F0026F7EF /* ZKAuthViewController.m in Sources */,
 				7E4F66B01EB61710003F0B4A /* ZKIntroduceViewController.m in Sources */,
 				7EA558861EBCC34800D1F015 /* ZKAuthRuntime.m in Sources */,

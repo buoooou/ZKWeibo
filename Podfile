@@ -13,6 +13,7 @@ target 'ZKWeibo' do
   pod 'Mantle'
   pod 'AFNetworking', '~> 3.0'
   pod 'JTSImageViewController'
+  pod 'MBProgressHUD', '~> 1.0.0'
   target 'ZKWeiboTests' do
     inherit! :search_paths
     # Pods for testing
