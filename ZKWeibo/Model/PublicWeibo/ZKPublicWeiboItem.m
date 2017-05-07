@@ -15,11 +15,11 @@
              @"content" : @"text",
              @"source" : @"source",
              @"user" : @"user",
-             @"picture" : @"original_pic",};
+             @"picture" : @"original_pic"};
 
 }
 + (NSValueTransformer *)userJSONTransformer {
-    return [MTLJSONAdapter arrayTransformerWithModelClass:[ZKUserItem class]];
+    return [MTLJSONAdapter dictionaryTransformerWithModelClass:[ZKUserItem class]];
 }
 
 + (NSDateFormatter *)dateFormatter {

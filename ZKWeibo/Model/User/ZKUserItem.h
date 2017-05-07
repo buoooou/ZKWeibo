@@ -12,9 +12,9 @@
 @property (nonatomic, strong) NSString *nickname;
 @property (nonatomic, strong) NSString *avatar;
 @property (nonatomic, strong) NSString *avatar_hd;
-@property (nonatomic, assign) NSInteger *followers;
-@property (nonatomic, assign) NSInteger *friends;
-@property (nonatomic, assign) NSInteger *statuses;
-@property (nonatomic, assign) NSInteger *favourites;
+@property (nonatomic, assign) NSInteger followers;
+@property (nonatomic, assign) NSInteger friends;
+@property (nonatomic, assign) NSInteger statuses;
+@property (nonatomic, assign) NSInteger favourites;
 @property (nonatomic, strong) NSString *gender;
 @end

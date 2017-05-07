@@ -139,7 +139,7 @@
 - (void)requestNewPublicWeibo {
     __weak typeof(self) weakSelf = self;
     NSString * accessToken=[UserDefaults objectForKey:ZKWeiboAccessToken];
-    NSDictionary *para=@{@"access_token":accessToken,@"count":@"1"};
+    NSDictionary *para=@{@"access_token":accessToken,@"count":@"10"};
     
     [ZKHTTPRequester requestHomeMoreWithParam:para Success:^(id responseObject) {
         __strong typeof(weakSelf) strongSelf = weakSelf;
