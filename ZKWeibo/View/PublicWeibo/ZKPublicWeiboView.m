@@ -8,21 +8,28 @@
 
 #import "ZKPublicWeiboView.h"
 #import "ZKPublicWeiboItem.h"
+#import "UIView+ZKWeibo.h"
 
 NSString *const kZKHomeViewID = @"ZKHomeViewID";
 @interface ZKPublicWeiboView ()
 
 @property (strong, nonatomic) UIScrollView *scrollView;
-@property (strong, nonatomic) UIImageView *contentView;
+@property (strong, nonatomic) UIView *contentView;
 @property (strong, nonatomic) UIImageView *coverView;
 @property (strong, nonatomic) UILabel *titleLabel;
 @property (strong, nonatomic) UILabel *dateLabel;
 @property (strong, nonatomic) UITextView *contentTextView;
 
+@property (strong, nonatomic) UIImageView *userAvatar;
+@property (strong, nonatomic) UILabel *userName;
+
 @property (strong, nonatomic) MASConstraint *textViewHeightConstraint;
 
 @end
-@implementation ZKPublicWeiboView
+@implementation ZKPublicWeiboView{
+//    NSString *avatar_HD;
+//    UIImageView *avatar_image;
+}
 #pragma mark - LifeCycle
 
 - (instancetype)init {
@@ -75,7 +82,7 @@ NSString *const kZKHomeViewID = @"ZKHomeViewID";
     });
     
     _contentView = ({
-        UIImageView *view = [UIImageView new];
+        UIView *view = [UIView new];
         view.backgroundColor = [UIColor whiteColor];
         view.layer.shadowColor = ZKShadowColor.CGColor;// #666666
         view.layer.shadowRadius = 2;
@@ -152,14 +159,52 @@ NSString *const kZKHomeViewID = @"ZKHomeViewID";
         
         label;
     });
+    _userAvatar = ({
+        UIImageView *imageView = [UIImageView new];
+        imageView.backgroundColor = [UIColor whiteColor];
+        imageView.contentMode = UIViewContentModeScaleAspectFit;
+        imageView.clipsToBounds = YES;
+        imageView.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(coverUserAvatarTapped)];
+        [imageView addGestureRecognizer:tap];
+        [_contentView addSubview:imageView];
+        [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.size.sizeOffset(CGSizeMake(25, 25));
+            make.top.equalTo(_contentTextView.mas_bottom).offset(10);
+            make.left.equalTo(_coverView);
+        }];
+        
+        imageView;
+    });
+    _userName = ({
+        UILabel *label = [UILabel new];
+        label.backgroundColor = [UIColor whiteColor];
+        label.textColor = ZKDarkGrayTextColor;
+        label.font = FontWithSize(12);
+        [_contentView addSubview:label];
+        [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_contentTextView.mas_bottom).offset(13);
+            make.left.equalTo(_userAvatar.mas_right).offset(10);
+            make.bottom.equalTo(_contentView).offset(-12);
+        }];
+        
+        label;
+    });
+    
 }
 
 #pragma mark - Action
 
 
 - (void)coverTapped {
-    
+    [self blowUpImage:_coverView.image referenceRect:_coverView.frame referenceView:_coverView.superview];
 }
+
+- (void)coverUserAvatarTapped {
+    
+    [self blowUpImage:_userAvatar.image referenceRect:_userAvatar.frame referenceView:_userAvatar.superview];
+}
+
 #pragma mark - Public Method
 
 - (void)configureViewWithHomeItem:(ZKPublicWeiboItem *)publicWeiboItem atIndex:(NSInteger)index {
@@ -178,6 +223,10 @@ NSString *const kZKHomeViewID = @"ZKHomeViewID";
     _titleLabel.text = [ZKUtilities stringSourceWithA:publicWeiboItem.source];
     _dateLabel.text = [ZKUtilities stringDateForCommentDate:publicWeiboItem.created_time];
 
+    [_userAvatar zk_sd_setImageWithURL:publicWeiboItem.user.avatar_hd placeholderImageName:@"home_cover_placeholder" cachePlachoderImage:NO];
+    _userName.text=publicWeiboItem.user.nickname;
+//    avatar_HD=publicWeiboItem.user.avatar_hd;
+//    [avatar_image zk_sd_setImageWithURL:avatar_HD placeholderImageName:@"home_cover_placeholder" cachePlachoderImage:NO];
 }
 
 @end

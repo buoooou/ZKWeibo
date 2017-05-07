@@ -11,7 +11,7 @@
 @implementation ZKBaseView
 
 - (void)dealloc {
-    DDLogDebug(@"%@ - %@", NSStringFromClass([self class]), NSStringFromSelector(_cmd));
+    DDLogDebug(@"view delloc%@ - %@", NSStringFromClass([self class]), NSStringFromSelector(_cmd));
 }
 
 @end

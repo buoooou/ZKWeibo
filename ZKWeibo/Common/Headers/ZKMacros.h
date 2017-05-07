@@ -9,7 +9,7 @@
 #ifndef ZKMacros_h
 #define ZKMacros_h
 
-
+#define kKeyWindow [UIApplication sharedApplication].keyWindow
 // 屏幕高度
 #define SCREEN_HEIGHT             [[UIScreen mainScreen] bounds].size.height
 // 屏幕宽度

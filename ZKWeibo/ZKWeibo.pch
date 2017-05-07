@@ -32,6 +32,9 @@
 #import <CocoaLumberjack/CocoaLumberjack.h>
 static const DDLogLevel ddLogLevel = DDLogLevelVerbose;
 
+
+#import <JTSImageViewController/JTSImageViewController.h>
+
 #pragma mark - NSEnum
 
 typedef NS_ENUM(NSUInteger, ZKActionType) {
