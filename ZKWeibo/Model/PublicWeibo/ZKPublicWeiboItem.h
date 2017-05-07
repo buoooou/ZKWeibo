@@ -16,4 +16,5 @@
 
 @property (nonatomic, strong) ZKUserItem *user;
 @property (nonatomic, strong) NSString *picture;
+@property (nonatomic, assign) NSInteger since_id;
 @end

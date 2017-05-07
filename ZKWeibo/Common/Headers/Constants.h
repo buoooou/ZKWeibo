@@ -35,7 +35,7 @@
 
 #define ZKCacheFilesFolderName                 @"CacheFiles"
 // 热门微博列表
-#define ZKPublicWeiboCount                     @"10"
+#define ZKPublicWeiboCount                     @"20"
 #define ZKCachePublicWeiboItemFileName         @"ZKCachePublicWeiboItemFileName"
 #define ZKCachePublicWeiboItemFilePath                [NSString stringWithFormat:@"%@/%@/%@", DocumentsDirectory, ZKCacheFilesFolderName, ZKCachePublicWeiboItemFileName]
 

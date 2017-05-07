@@ -15,7 +15,8 @@
              @"content" : @"text",
              @"source" : @"source",
              @"user" : @"user",
-             @"picture" : @"original_pic"};
+             @"picture" : @"original_pic",
+             @"since_id" : @"id"};
 
 }
 + (NSValueTransformer *)userJSONTransformer {

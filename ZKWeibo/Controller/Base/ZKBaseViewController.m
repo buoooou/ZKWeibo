@@ -86,7 +86,7 @@
 
 #pragma mark - Action
 - (void)showSearchingViewController {
-    [self.navigationController presentViewController:[[UINavigationController alloc] initWithRootViewController:[[ZKSearchViewController alloc] init]] animated:YES completion:NULL];
+//    [self.navigationController presentViewController:[[UINavigationController alloc] initWithRootViewController:[[ZKSearchViewController alloc] init]] animated:YES completion:NULL];
 }
 - (void)pushMeViewController {
     [UIView beginAnimations:@"pushUserHome" context:nil];

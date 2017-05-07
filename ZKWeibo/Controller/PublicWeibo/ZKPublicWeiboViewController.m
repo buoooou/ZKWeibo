@@ -21,7 +21,7 @@
 @end
 
 @implementation ZKPublicWeiboViewController{
-    NSUInteger page;
+    NSUInteger since_id;
 }
 
 #pragma view lifecycle
@@ -62,7 +62,6 @@
 #pragma mark - Private Method
 -(void) initDatas{
     self.dataSource=[[NSMutableArray alloc]initWithCapacity:20];
-    page=1;
 }
 
 -(void) setupViews{
@@ -119,6 +118,8 @@
 
 - (void)appendDataSource:(NSArray *)dataSource {
     [_dataSource addObjectsFromArray:dataSource];
+//    ZKPublicWeiboItem *item=[_dataSource lastObject];
+//    since_id=item.since_id;
     _pagingScrollView.hidden = NO;
     [_pagingScrollView reloadData];
 }
@@ -142,17 +143,16 @@
 - (void)requestNewPublicWeibo {
     __weak typeof(self) weakSelf = self;
     NSString * accessToken=[UserDefaults objectForKey:ZKWeiboAccessToken];
-    NSDictionary *para=@{@"access_token":accessToken,@"count":ZKPublicWeiboCount,@"page":@"1"};
+    NSDictionary *para=@{@"access_token":accessToken,@"count":ZKPublicWeiboCount};
     
     [ZKHTTPRequester requestHomeMoreWithParam:para Success:^(id responseObject) {
         __strong typeof(weakSelf) strongSelf = weakSelf;
         if (!strongSelf) {
             return;
         }
-        
+        DDLogDebug(@"测试 %@",responseObject);
         NSError *error;
         NSArray *items = [MTLJSONAdapter modelsOfClass:[ZKPublicWeiboItem class] fromJSONArray:responseObject[@"statuses"] error:&error];
-
         if (!error) {
             [self.dataSource removeAllObjects];
             [self appendDataSource:items];
@@ -173,10 +173,10 @@
 - (void)requestPublicWeiboMore {
     __weak typeof(self) weakSelf = self;
     //获取新热门微博
-    page++;
-    NSString * strPage=[NSString stringWithFormat:@"%ld",page];
+    since_id+=20;
+    NSString *strID=[NSString stringWithFormat:@"%lu",since_id];
     NSString * accessToken=[UserDefaults objectForKey:ZKWeiboAccessToken];
-    NSDictionary *para=@{@"access_token":accessToken,@"count":ZKPublicWeiboCount,@"page":strPage};
+    NSDictionary *para=@{@"access_token":accessToken,@"count":ZKPublicWeiboCount,@"since_id":strID};
     
     [ZKHTTPRequester requestHomeMoreWithParam:para Success:^(id responseObject) {
         __strong typeof(weakSelf) strongSelf = weakSelf;
@@ -227,10 +227,6 @@
         CGPoint contentOffset = pagingScrollView.scrollView.contentOffset;
         pagingScrollView.scrollView.contentOffset = CGPointMake(contentOffset.x, 0);
     }
-}
-
-- (void)pagingScrollView:(GMCPagingScrollView *)pagingScrollView didScrollToPageAtIndex:(NSUInteger)index {
-    DDLogDebug(@" %lu ",(unsigned long)index);
 }
 
 @end

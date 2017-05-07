@@ -181,11 +181,12 @@ NSString *const kZKHomeViewID = @"ZKHomeViewID";
         label.backgroundColor = [UIColor whiteColor];
         label.textColor = ZKDarkGrayTextColor;
         label.font = FontWithSize(12);
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(coverUserAvatarTapped)];
+        [label addGestureRecognizer:tap];
         [_contentView addSubview:label];
         [label mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(_contentTextView.mas_bottom).offset(13);
+            make.top.equalTo(_contentTextView.mas_bottom).offset(16);
             make.left.equalTo(_userAvatar.mas_right).offset(10);
-            make.bottom.equalTo(_contentView).offset(-12);
         }];
         
         label;
@@ -202,7 +203,7 @@ NSString *const kZKHomeViewID = @"ZKHomeViewID";
 
 - (void)coverUserAvatarTapped {
     
-    [self blowUpImage:_userAvatar.image referenceRect:_userAvatar.frame referenceView:_userAvatar.superview];
+    //[self blowUpImage:_userAvatar.image referenceRect:_userAvatar.frame referenceView:_userAvatar.superview];
 }
 
 #pragma mark - Public Method
@@ -223,10 +224,8 @@ NSString *const kZKHomeViewID = @"ZKHomeViewID";
     _titleLabel.text = [ZKUtilities stringSourceWithA:publicWeiboItem.source];
     _dateLabel.text = [ZKUtilities stringDateForCommentDate:publicWeiboItem.created_time];
 
-    [_userAvatar zk_sd_setImageWithURL:publicWeiboItem.user.avatar_hd placeholderImageName:@"home_cover_placeholder" cachePlachoderImage:NO];
+    [_userAvatar zk_sd_setImageWithURL:publicWeiboItem.user.avatar placeholderImageName:@"home_cover_placeholder" cachePlachoderImage:NO];
     _userName.text=publicWeiboItem.user.nickname;
-//    avatar_HD=publicWeiboItem.user.avatar_hd;
-//    [avatar_image zk_sd_setImageWithURL:avatar_HD placeholderImageName:@"home_cover_placeholder" cachePlachoderImage:NO];
 }
 
 @end
