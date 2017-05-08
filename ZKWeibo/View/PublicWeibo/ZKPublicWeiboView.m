@@ -8,7 +8,6 @@
 
 #import "ZKPublicWeiboView.h"
 #import "ZKPublicWeiboItem.h"
-#import "UIView+ZKWeibo.h"
 
 NSString *const kZKHomeViewID = @"ZKHomeViewID";
 @interface ZKPublicWeiboView ()

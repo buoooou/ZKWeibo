@@ -6,8 +6,8 @@
 //  Copyright © 2017年 张阔. All rights reserved.
 //
 
-#import "ZKBaseView.h"
+#import <UIKit/UIKit.h>
 
-@interface ZKWeiboPhotoContainer : ZKBaseView
-
+@interface ZKWeiboPhotoContainer : UIView
+@property (nonatomic, strong) NSArray *picPathStringsArray;
 @end
