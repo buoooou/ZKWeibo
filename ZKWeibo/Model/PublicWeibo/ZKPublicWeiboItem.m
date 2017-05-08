@@ -15,7 +15,7 @@
              @"content" : @"text",
              @"source" : @"source",
              @"user" : @"user",
-             @"picture" : @"original_pic",
+             @"pictures" : @"pic_urls",
              @"since_id" : @"id"};
 
 }
@@ -37,4 +37,15 @@
         return [self.dateFormatter stringFromDate:date];
     }];
 }
++ (NSValueTransformer *)picturesJSONTransformer {
+    return [MTLJSONAdapter arrayTransformerWithModelClass:[ZKWeiboPicItem class]];
+}
+
+@end
+@implementation ZKWeiboPicItem
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+    return @{@"picture" : @"thumbnail_pic",};
+    
+}
+
 @end

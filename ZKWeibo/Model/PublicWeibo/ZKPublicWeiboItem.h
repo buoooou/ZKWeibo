@@ -15,6 +15,9 @@
 @property (nonatomic, strong) NSString *source;
 
 @property (nonatomic, strong) ZKUserItem *user;
-@property (nonatomic, strong) NSString *picture;
+@property (nonatomic, strong) NSArray *pictures;
 @property (nonatomic, assign) NSInteger since_id;
+@end
+@interface ZKWeiboPicItem : ZKBaseModel
+@property (nonatomic, strong) NSString *picture;
 @end
