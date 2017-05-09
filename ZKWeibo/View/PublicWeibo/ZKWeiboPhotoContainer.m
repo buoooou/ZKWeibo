@@ -7,6 +7,7 @@
 //
 
 #import "ZKWeiboPhotoContainer.h"
+#import "ZKPublicWeiboItem.h"
 
 @interface ZKWeiboPhotoContainer()
 @property (nonatomic, strong) NSArray *imageViewsArray;
@@ -56,9 +57,11 @@
     CGFloat itemW = [self itemWidthForPicPathArray:_picPathStringsArray];
     CGFloat itemH = 0;
     if (_picPathStringsArray.count == 1) {
-        UIImage *image = [UIImage imageNamed:_picPathStringsArray.firstObject];
-        if (image.size.width) {
-            itemH = image.size.height / image.size.width * itemW;
+        UIImageView *image = [UIImageView new];
+        [image zk_sd_setImageWithURL:((ZKWeiboPicItem *)_picPathStringsArray.firstObject).picture
+                placeholderImageName:@"home_cover_placeholder" cachePlachoderImage:NO];
+        if (image.frame.size.width) {
+            itemH = image.frame.size.height / image.frame.size.width * itemW;
         }
     } else {
         itemH = itemW;
@@ -71,7 +74,8 @@
         long rowIndex = idx / perRowItemCount;
         UIImageView *imageView = [_imageViewsArray objectAtIndex:idx];
         imageView.hidden = NO;
-        imageView.image = [UIImage imageNamed:obj];
+        [imageView zk_sd_setImageWithURL:((ZKWeiboPicItem *)obj).picture
+                placeholderImageName:@"home_cover_placeholder" cachePlachoderImage:NO];
         imageView.frame = CGRectMake(columnIndex * (itemW + margin), rowIndex * (itemH + margin), itemW, itemH);
     }];
     
