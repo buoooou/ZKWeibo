@@ -131,10 +131,12 @@ static NSDateFormatter *commentDateFormatter;
 + (NSString *)stringSourceWithA:(NSString *)source{
 
     NSRange range = [source rangeOfString:@">"];
-    source = [source substringFromIndex:range.location + range.length];
-    range = [source rangeOfString:@"<"];
-    source = [source substringToIndex:range.location];
-    source = [NSString stringWithFormat:@"来自:%@",source];
+    if(range.length){
+        source = [source substringFromIndex:range.location + range.length];
+        range = [source rangeOfString:@"<"];
+        source = [source substringToIndex:range.location];
+        source = [NSString stringWithFormat:@"来自:%@",source];
+    }
     return source;
 }
 
