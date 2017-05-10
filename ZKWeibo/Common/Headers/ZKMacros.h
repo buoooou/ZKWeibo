@@ -12,8 +12,12 @@
 #define kKeyWindow [UIApplication sharedApplication].keyWindow
 // 屏幕高度
 #define SCREEN_HEIGHT             [[UIScreen mainScreen] bounds].size.height
+
 // 屏幕宽度
 #define SCREEN_WIDTH              [[UIScreen mainScreen] bounds].size.width
+
+//每张图片高度
+#define PHOTO_HEIGHT              80
 
 #pragma mark - Common
 
