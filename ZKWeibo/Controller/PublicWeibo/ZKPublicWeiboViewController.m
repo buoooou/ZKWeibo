@@ -150,7 +150,7 @@
         if (!strongSelf) {
             return;
         }
-        DDLogDebug(@"测试 %@",responseObject);
+       // DDLogDebug(@"测试 %@",responseObject);
         NSError *error;
         NSArray *items = [MTLJSONAdapter modelsOfClass:[ZKPublicWeiboItem class] fromJSONArray:responseObject[@"statuses"] error:&error];
         if (!error) {

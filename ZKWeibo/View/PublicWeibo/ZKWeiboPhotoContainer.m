@@ -38,7 +38,7 @@
     
     self.imageViewsArray = [temp copy];
 }
-- (void)setPicPathStringsArray:(NSArray *)picPathStringsArray
+- (void)addPicPathStringsArray:(NSArray *)picPathStringsArray
 {
     _picPathStringsArray = picPathStringsArray;
     
@@ -75,7 +75,7 @@
         UIImageView *imageView = [_imageViewsArray objectAtIndex:idx];
         imageView.hidden = NO;
         [imageView zk_sd_setImageWithURL:((ZKWeiboPicItem *)obj).picture
-                placeholderImageName:@"home_cover_placeholder" cachePlachoderImage:NO];
+                    placeholderImageName:@"home_cover_placeholder" cachePlachoderImage:NO];
         imageView.frame = CGRectMake(columnIndex * (itemW + margin), rowIndex * (itemH + margin), itemW, itemH);
     }];
     

@@ -183,22 +183,17 @@ NSString *const kZKHomeViewID = @"ZKHomeViewID";
         [_contentView addSubview:imageView];
         [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(_contentTextView.mas_bottom);
-            make.left.right.bottom.equalTo(_contentView).insets(UIEdgeInsetsMake(6, 6, 0, 6));
+            make.size.equalTo(imageView);
+            make.bottom.equalTo(_contentView).insets(UIEdgeInsetsMake(6, 6, 0, 6));
             
         }];
         
         imageView;
     });
-
     
 }
 
 #pragma mark - Action
-
-
-//- (void)coverTapped {
-//    [self blowUpImage:_coverView.image referenceRect:_coverView.frame referenceView:_coverView.superview];
-//}
 
 - (void)coverUserAvatarTapped {
     
@@ -214,15 +209,7 @@ NSString *const kZKHomeViewID = @"ZKHomeViewID";
 - (void)configureViewWithHomeItem:(ZKPublicWeiboItem *)publicWeiboItem atIndex:(NSInteger)index inViewController:(ZKBaseViewController *)parentViewController {
     self.viewIndex = index;
     self.parentViewController = parentViewController;
-//    [_coverView zk_sd_setImageWithURL:publicWeiboItem.pictures placeholderImageName:@"home_cover_placeholder" cachePlachoderImage:NO];
-    [_photosView setPicPathStringsArray:publicWeiboItem.pictures];
-    [_photosView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_contentTextView.mas_bottom);
-        make.height.equalTo(_photosView.mas_height).multipliedBy(0.75);
-        make.left.right.bottom.equalTo(_contentView).insets(UIEdgeInsetsMake(6, 6, 0, 6));
-        
-    }];
-
+    [_photosView addPicPathStringsArray:publicWeiboItem.pictures];
     _contentTextView.attributedText = [ZKUtilities zk_attributedStringWithText:publicWeiboItem.content lineSpacing:ZKLineSpacing font:_contentTextView.font textColor:_contentTextView.textColor];
     
     _textViewHeightConstraint.equalTo(@(ceilf([ZKUtilities zk_rectWithAttributedString:_contentTextView.attributedText size:CGSizeMake((SCREEN_WIDTH - 24 - 12), CGFLOAT_MAX)].size.height) + 50));

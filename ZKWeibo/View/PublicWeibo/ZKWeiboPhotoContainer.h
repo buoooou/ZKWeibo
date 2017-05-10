@@ -10,4 +10,5 @@
 
 @interface ZKWeiboPhotoContainer : UIView
 @property (nonatomic, strong) NSArray *picPathStringsArray;
+-(void)addPicPathStringsArray:(NSArray *)picPathStringsArray;
 @end
