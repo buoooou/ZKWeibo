@@ -102,7 +102,7 @@
     if (array.count == 1) {
         return 120;
     } else {
-        CGFloat w = [UIScreen mainScreen].bounds.size.width > 320 ? 80 : 70;
+        CGFloat w = (SCREEN_WIDTH-24-12-20)/3;
         return w;
     }
 }

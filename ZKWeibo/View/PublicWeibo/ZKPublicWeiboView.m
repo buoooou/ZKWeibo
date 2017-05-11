@@ -24,6 +24,7 @@ NSString *const kZKHomeViewID = @"ZKHomeViewID";
 @property (strong, nonatomic) UILabel *userName;
 
 @property (strong, nonatomic) MASConstraint *textViewHeightConstraint;
+@property (strong, nonatomic) MASConstraint *photoViewHeightConstraint;
 
 @end
 @implementation ZKPublicWeiboView{
@@ -182,12 +183,12 @@ NSString *const kZKHomeViewID = @"ZKHomeViewID";
         ZKWeiboPhotoContainer *imageView = [ZKWeiboPhotoContainer new];
         [_contentView addSubview:imageView];
         [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(_contentTextView.mas_bottom);
-            make.size.equalTo(imageView);
-            make.bottom.equalTo(_contentView).insets(UIEdgeInsetsMake(6, 6, 0, 6));
-            
+            make.top.equalTo(_contentTextView.mas_bottom).offset(10);
+            make.left.equalTo(_contentView).offset(10);
+            make.right.equalTo(_contentView).offset(-10);
+            make.bottom.equalTo(_contentView.mas_bottom).offset(-10);
+            _photoViewHeightConstraint = make.height.equalTo(@0);
         }];
-        
         imageView;
     });
     
@@ -210,9 +211,11 @@ NSString *const kZKHomeViewID = @"ZKHomeViewID";
     self.viewIndex = index;
     self.parentViewController = parentViewController;
     [_photosView addPicPathStringsArray:publicWeiboItem.pictures];
+    
+    _photoViewHeightConstraint.equalTo(@(_photosView.frame.size.height));
     _contentTextView.attributedText = [ZKUtilities zk_attributedStringWithText:publicWeiboItem.content lineSpacing:ZKLineSpacing font:_contentTextView.font textColor:_contentTextView.textColor];
     
-    _textViewHeightConstraint.equalTo(@(ceilf([ZKUtilities zk_rectWithAttributedString:_contentTextView.attributedText size:CGSizeMake((SCREEN_WIDTH - 24 - 12), CGFLOAT_MAX)].size.height) + 50));
+    _textViewHeightConstraint.equalTo(@(ceilf([ZKUtilities zk_rectWithAttributedString:_contentTextView.attributedText size:CGSizeMake((SCREEN_WIDTH - 24 - 12), CGFLOAT_MAX)].size.height) + 10));
 
     _scrollView.contentOffset = CGPointZero;
     _sourceLabel.text = [ZKUtilities stringSourceWithA:publicWeiboItem.source];
