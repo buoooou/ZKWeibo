@@ -16,6 +16,7 @@
 
 @property (nonatomic, strong) ZKUserItem *user;
 @property (nonatomic, strong) NSArray *pictures;
+@property (nonatomic, strong) NSString *largepicture;
 @property (nonatomic, assign) NSInteger since_id;
 @end
 @interface ZKWeiboPicItem : ZKBaseModel

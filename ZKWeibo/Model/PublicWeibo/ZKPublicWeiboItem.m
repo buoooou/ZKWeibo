@@ -16,7 +16,8 @@
              @"source" : @"source",
              @"user" : @"user",
              @"pictures" : @"pic_urls",
-             @"since_id" : @"id"};
+             @"since_id" : @"id",
+             @"largepicture":@"original_pic"};
 
 }
 + (NSValueTransformer *)userJSONTransformer {
