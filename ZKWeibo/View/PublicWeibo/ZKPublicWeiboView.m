@@ -215,7 +215,7 @@ NSString *const kZKHomeViewID = @"ZKHomeViewID";
     _photoViewHeightConstraint.equalTo(@(_photosView.frame.size.height));
     _contentTextView.attributedText = [ZKUtilities zk_attributedStringWithText:publicWeiboItem.content lineSpacing:ZKLineSpacing font:_contentTextView.font textColor:_contentTextView.textColor];
     
-    _textViewHeightConstraint.equalTo(@(ceilf([ZKUtilities zk_rectWithAttributedString:_contentTextView.attributedText size:CGSizeMake((SCREEN_WIDTH - 24 - 12), CGFLOAT_MAX)].size.height) + 10));
+    _textViewHeightConstraint.equalTo(@(ceilf([ZKUtilities zk_rectWithAttributedString:_contentTextView.attributedText size:CGSizeMake((SCREEN_WIDTH - 24 - 12), CGFLOAT_MAX)].size.height) + 20));
 
     _scrollView.contentOffset = CGPointZero;
     _sourceLabel.text = [ZKUtilities stringSourceWithA:publicWeiboItem.source];
